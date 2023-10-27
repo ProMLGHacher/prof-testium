@@ -1,0 +1,28 @@
+.header {}
+
+.header-wrapper {
+    display: flex;
+    justify-content: space-between;
+    padding-block: 20px;
+}
+
+.divider {
+    height: 1px;
+    background-color: white;
+}
+
+.nav {
+    display: flex;
+    gap: 20px;
+}
+
+.nav a {
+    color: white;
+    text-decoration: none;
+}
+
+.phone {
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+}
