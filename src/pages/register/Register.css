@@ -5,6 +5,14 @@
   flex-direction: column;
 }
 
+.left-side {
+  flex: 1;
+
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
 .main-wrapper {
   display: flex;
   align-items: center;
@@ -13,10 +21,10 @@
   flex: 1;
 }
 
-.welcome {
-  font-size: 62px;
+.title {
+  font-size: 33px;
   font-style: normal;
-  font-weight: 900;
+  font-weight: 700;
   color: white;
   margin-bottom: 20px;
 }
@@ -33,4 +41,29 @@
 
 .ready-button {
   width: 40%;
+}
+
+.btn {
+  flex: 1;
+}
+
+.buttons {
+  width: 60%;
+  display: flex;
+  gap: 20px;
+}
+
+.links {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+}
+
+.link {
+  color: white;
+}
+
+.field {
+  width: 60%;
 }

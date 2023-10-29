@@ -2,7 +2,7 @@ import axios, { AxiosInstance } from 'axios';
 import { redirect } from 'react-router-dom';
 import { RootState, store } from '../../store/store';
 
-const baseURL = 'https://b620-185-7-93-108.ngrok-free.app';
+const baseURL = 'http://192.168.0.101:8090/api/';
 
 export const $api: AxiosInstance = axios.create({
     baseURL,

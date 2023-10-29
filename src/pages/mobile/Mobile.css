@@ -1,0 +1,11 @@
+.tit {
+    color: #193D9B;
+
+    font-family: Proxima Nova;
+    font-size: 31px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: 140%;
+    /* 43.4px */
+    text-transform: uppercase;
+}

@@ -1,13 +1,20 @@
 import './Header.css'
-import logo from '../../assets/logo.svg'
-import { Link } from 'react-router-dom'
+import logo from '../../../assets/logo.svg'
+import { Link, useNavigate } from 'react-router-dom'
 import LangSwitcher from '../lang/LangSwitcher'
+import { useAppSelector } from '../../../store/hooks'
+import { selectRole, selectToken } from '../../../slices/authSlice'
 
 type HeaderProps = {
     background?: string | undefined
 }
 
 const Header = (props: HeaderProps) => {
+
+    const navigate = useNavigate()
+
+    const token = useAppSelector(selectToken)
+
     return (
         <div
             style={{
@@ -17,7 +24,13 @@ const Header = (props: HeaderProps) => {
         >
             <div className="header-wrapper container">
                 <img src={logo} alt="kjnjx" />
-                <button className='transparent-button'>Войти в систему</button>
+                {
+                    token ? <button onClick={() => {
+                        navigate('/main')
+                    }} className='transparent-button'>Личный кабинет</button> : <button onClick={() => {
+                        navigate('/registration')
+                    }} className='transparent-button'>Войти в систему</button> 
+                }
             </div>
             <div className="divider" />
             <div className="header-wrapper container">

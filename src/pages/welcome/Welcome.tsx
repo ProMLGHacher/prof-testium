@@ -1,5 +1,5 @@
 import './Welcome.css'
-import Header from '../../shared/header/Header'
+import Header from '../../shared/ui/header/Header'
 import welcome from '../../assets/welcome.svg'
 
 function Welcome() {

@@ -1,15 +1,15 @@
 import ReactDOM from 'react-dom/client'
 import './index.css'
-import { RouterProvider, createBrowserRouter } from 'react-router-dom'
-import Welcome from './pages/welcome/Welcome'
+import { Provider } from 'react-redux'
+import { store } from './store/store'
+import Router from './app/router'
 
-const router = createBrowserRouter([
-    {
-        path: '/',
-        element: <Welcome />
-    }
-])
+
+
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
-    <RouterProvider router={router} />
+    
+    <Provider store={store}>
+        <Router />
+    </Provider>
 )

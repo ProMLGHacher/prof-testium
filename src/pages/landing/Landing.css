@@ -1,0 +1,230 @@
+.main {
+    height: 100vh;
+    background-image: url('../../assets/back.png');
+    display: flex;
+    flex-direction: column;
+}
+
+.left-side {
+    flex: 1;
+
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.main-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 40px;
+    flex: 1;
+}
+
+.title {
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: 140%;
+    /* 56px */
+    text-transform: uppercase;
+    color: white;
+}
+
+.subtitle {
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 140%;
+    color: white;
+    width: 80%;
+    margin-bottom: 60px;
+}
+
+.ready-button {
+    width: 40%;
+}
+
+.btn {
+    flex: 1;
+}
+
+.buttons {
+    width: 60%;
+    display: flex;
+    gap: 20px;
+}
+
+.links {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+}
+
+.link {
+    color: white;
+}
+
+.field {
+    width: 60%;
+}
+
+
+.advantages {
+    margin-top: 80px;
+    display: grid;
+    grid-gap: 20px;
+    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+}
+
+.advantage {
+    background-color: transparent;
+    padding: 40px;
+    border: 2px solid rgba(24, 64, 167, 0.50);
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    transition: background-color 0.3s;
+
+    cursor: pointer;
+}
+
+.advantage-last {
+    border: 2px solid rgba(24, 64, 167, 0.50);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    transition: all .3s;
+
+    cursor: pointer;
+}
+
+.advantage-last:hover {
+    background-color: #1840A7;
+    color: white;
+}
+
+.advantage:hover {
+    background-color: #1840A7;
+}
+
+.start {
+    font-size: 25px;
+    font-style: normal;
+    font-weight: 700;
+}
+
+.top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.number {
+    font-size: 96px;
+    font-style: normal;
+    font-weight: 700;
+    color: #1840A7;
+    opacity: 0.5;
+    line-height: 20px;
+
+    transition: color .3s;
+}
+
+.advantage:hover .number {
+    color: white;
+}
+
+.advantage-title {
+    color: #333;
+    font-size: 30px;
+    font-style: normal;
+    font-weight: 700;
+
+    transition: color .3s;
+}
+
+.advantage:hover .advantage-title {
+    color: white;
+}
+
+.advantage-subtitle {
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 140%;
+    color: #333;
+
+    transition: color .3s;
+}
+
+.advantage:hover .advantage-subtitle {
+    color: white;
+}
+
+.about {
+    width: 80%;
+
+    display: flex;
+    align-items: center;
+    gap: 40px;
+
+    margin-top: 80px;
+}
+
+.about-item {
+    flex: 1;
+}
+
+
+.news {
+    margin-top: 80px;
+}
+
+.news-wrapper {
+    margin-top: 40px;
+
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+    grid-gap: 20px;
+}
+
+.new {
+    border: 2px solid rgba(24, 64, 167, 0.50);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.new img {
+    width: 100%;
+    aspect-ratio: 16/9;
+    object-fit: cover;
+}
+
+.footer {
+    background-color: #1840A7;
+    margin-top: 80px;
+}
+
+.footer-nav-wrapper {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    color: white;
+
+    padding-block: 40px;
+}
+
+.footer-nav-wrapper img {
+    width: 60%;
+}
+
+.footer-nav-wrapper li {
+    line-height: 180%;
+}
