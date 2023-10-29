@@ -11,16 +11,16 @@ export const $api: AxiosInstance = axios.create({
     }
 });
 
-// $api.interceptors.request.use(async (config) => {
-//     const state: RootState = store.getState();
-//     const accessToken = state.token.accessToken;
+$api.interceptors.request.use(async (config) => {
+    const state: RootState = store.getState();
+    const accessToken = state.auth.token;
 
-//     if (accessToken) {
-//         config.headers.Authorization = `${accessToken}`;
-//     }
+    if (accessToken) {
+        config.headers.Authorization = `${accessToken}`;
+    }
 
-//     return config;
-// });
+    return config;
+});
 
 // $api.interceptors.response.use(
 //     (response) => response,

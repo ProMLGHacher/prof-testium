@@ -1,12 +1,13 @@
 import { useRef } from 'react'
 import './EditText.css'
 
-type EditTextProps = {
+export type EditTextProps = {
     img?: string | undefined,
     value?: string | number | readonly string[] | undefined,
     onChange?: (value: string) => void | undefined,
     placeholder?: string | undefined,
     className?: string | undefined
+    
 }
 
 const EditText = (props: EditTextProps) => {

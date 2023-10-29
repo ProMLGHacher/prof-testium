@@ -35,10 +35,9 @@ const Header = (props: HeaderProps) => {
             <div className="divider" />
             <div className="header-wrapper container">
                 <nav className='nav'>
-                    <Link to={'/'}>Почему мы?</Link>
-                    <Link to={'/'}>О нас</Link>
-                    <Link to={'/'}>Партнеры и организации</Link>
-                    <Link to={'/'}>Помощь</Link>
+                    <a href={'/#1'}>Почему мы?</a>
+                    <a href={'/#2'}>О нас</a>
+                    <a href={'/#3'}>Партнеры и организации</a>
                 </nav>
                 <div style={{
                     display: 'flex',

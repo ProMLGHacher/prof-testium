@@ -43,7 +43,7 @@ function Register() {
               }))
             }} className='white-button btn'>Зарегистрироваться!</button>
             <div className='links'>
-              <Link className='link' to={'/'} >У меня есть аккаунт</Link>
+              <Link className='link' to={'/auth'} >У меня есть аккаунт</Link>
               <Link className='link' to={'/'} >Я не помню пароль</Link>
             </div>
           </div>

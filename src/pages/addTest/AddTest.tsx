@@ -1,7 +1,9 @@
-import { useState } from 'react'
+import { useCallback, useRef, useState } from 'react'
 import AddButton from '../../shared/ui/AddButton/AddButton'
 import CustomInput from '../../shared/ui/CustomInput/CustomInput'
 import PageTitle from '../../shared/ui/PageTitle/PageTitle'
+import { useParams } from 'react-router-dom'
+import { $api } from '../../shared/api/api'
 
 type Answer = {
     answer: string,
@@ -33,16 +35,56 @@ const initAnswer = (): Answer => {
 
 const AddTest = () => {
 
+
+
+    const { id } = useParams()
+
     const [questions, setQuestions] = useState<Question[]>([
         initQuestion()
     ])
+
+    const [name, setName] = useState('')
+
+
+    const sub = () => {
+        $api.post('/test', {
+            departmentId: id,
+            name: name,
+            questions: questions.map((elem) => {
+                return {
+                    name: elem.question,
+                    rightAnswerIndex: elem.rightAnswer,
+                    answers: elem.answers.map((el) => {
+                        return el.answer
+                    })
+                }
+            })
+        })
+        setQuestions([
+            initQuestion()
+        ])
+    }
+
+    console.log(questions);
+    
+
+
+    const clck = useCallback((quesIndex: number) => {
+        setQuestions(prev => {
+            const ar = JSON.parse(JSON.stringify(prev))
+            ar[quesIndex].answers = ar[quesIndex].answers.concat(initAnswer())
+            return ar
+        })
+    }, [])
+
+
 
     return (
         <div>
             <PageTitle text='Добавление Теста' />
             <div style={{
                 display: 'grid',
-                gridTemplateColumns: '1fr 1fr',
+                gridTemplateColumns: '1fr',
                 gridGap: '40px',
                 marginTop: '20px'
             }}>
@@ -50,13 +92,9 @@ const AddTest = () => {
                     <p style={{
                         opacity: '0.5'
                     }}>Название теста</p>
-                    <CustomInput />
-                </div>
-                <div>
-                    <p style={{
-                        opacity: '0.5'
-                    }}>Для кого?</p>
-                    <CustomInput />
+                    <CustomInput value={name} onChange={(e) => {
+                        setName(e)
+                    }} />
                 </div>
             </div>
             <div style={{
@@ -89,7 +127,13 @@ const AddTest = () => {
                                     <p style={{
                                         opacity: '0.5'
                                     }}>Вопрос</p>
-                                    <CustomInput />
+                                    <CustomInput value={ques.question} onChange={(e) => {
+                                        setQuestions(prev => {
+                                            const pr: Question[] = JSON.parse(JSON.stringify(prev))
+                                            pr[quesIndex].question = e
+                                            return pr
+                                        })
+                                    }} />
                                 </div>
                                 <div>
                                     <p style={{
@@ -107,22 +151,28 @@ const AddTest = () => {
                                                     alignItems: 'center',
                                                     justifyContent: 'space-between',
                                                     gap: '20px'
-                                                }} key={`${index} ${elem.answer}`}>
+                                                }}>
                                                     {
                                                         index === questions[quesIndex].answers.length - 1
                                                             ? <div style={{
                                                                 flex: '1'
                                                             }}>
-                                                                <AddButton onClick={() => {
-                                                                    setQuestions(prev => {
-                                                                        prev[quesIndex].answers = prev[quesIndex].answers.concat(initAnswer())
-                                                                        return JSON.parse(JSON.stringify(prev))
-                                                                    })
-                                                                }}>
-                                                                    <CustomInput />
+                                                                <AddButton onClick={() => clck(quesIndex)}>
+                                                                    <CustomInput  onChange={(e) => {
+                                                                        setQuestions(prev => {
+                                                                            prev[quesIndex].answers[index].answer = e
+                                                                            return prev
+                                                                        })
+                                                                    }} />
                                                                 </AddButton>
                                                             </div>
-                                                            : <CustomInput />
+                                                            : <CustomInput value={ques.answers[index].answer} onChange={(e) => {
+                                                                setQuestions(prev => {
+                                                                    const pr: Question[] = JSON.parse(JSON.stringify(prev))
+                                                                    pr[quesIndex].answers[index].answer = e
+                                                                    return pr
+                                                                })
+                                                            }} />
                                                     }
                                                     <input style={{
                                                         width: '20px',
@@ -151,6 +201,7 @@ const AddTest = () => {
                 <button onClick={() => {
                     setQuestions(prev => prev.concat(initQuestion()))
                 }} className='transparent-button-black'>+ Добавить</button>
+                <button onClick={sub} className='blue-button'>Отправить!</button>
             </div>
         </div>
     )

@@ -8,9 +8,12 @@ import n1 from '../../assets/1.png'
 import n2 from '../../assets/2.png'
 import n3 from '../../assets/3.png'
 import { useNavigate } from 'react-router-dom'
+import { useAppSelector } from '../../store/hooks'
+import { selectToken } from '../../slices/authSlice'
 
 const Landing = () => {
 
+    const token = useAppSelector(selectToken)
     const navigate = useNavigate()
 
     return (
@@ -22,16 +25,20 @@ const Landing = () => {
                         <h1 className='title'>ПРОФТЕСТИУМ - ВАШ УНИВЕРСАЛЬНЫЙ ПОМОщНИК для вашего производства</h1>
                         <p className='subtitle'>Создайте любую структуру компании и определите роли и Убедитесь, что каждый член команды понимает свою роль правильно и знает о ответственности.</p>
                         <div className='buttons'>
-                            <button onClick={() => {
-                                navigate('/registration')
-                            }} className='white-button btn'>Войти в систему</button>
+                            {
+                                token ? <button onClick={() => {
+                                    navigate('/main')
+                                }} className='white-button btn'>Личный кабинет</button> : <button onClick={() => {
+                                    navigate('/registration')
+                                }} className='white-button btn'>Войти в систему</button> 
+                            }
                             <button className='transparent-button btn'>Видео о платформе</button>
                         </div>
                     </div>
                     <img className='welcome-img' src={welcome} alt="" />
                 </div>
             </section>
-            <section className='container advantages'>
+            <section id='1' className='container advantages'>
                 <div className='advantage'>
                     <div className='top'>
                         <h2 className='advantage-title'>Быстрый старт к оптимизации</h2>
@@ -71,7 +78,7 @@ const Landing = () => {
                     <p className='start'>Начать</p>
                 </div>
             </section>
-            <section className='container about'>
+            <section id='2' className='container about'>
                 <div className='about-item'>
                     <img className='about-logo' src={logo} alt="" />
                     <p style={{
@@ -81,7 +88,7 @@ const Landing = () => {
                 </div>
                 <img className='about-item' src={about} alt="" />
             </section>
-            <section className='container news'>
+            <section id='3' className='container news'>
                 <h1 style={{
                     textAlign: 'center'
                 }}>Новости компании</h1>

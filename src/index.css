@@ -1,13 +1,10 @@
-@import url('https://fonts.cdnfonts.com/css/proxima-nova-condensed');
-
-body {
-  font-family: 'Proxima Nova Condensed', sans-serif;
-}
+@import url('https://fonts.cdnfonts.com/css/proxima-nova');
 
 * {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+  font-family: 'Proxima Nova', sans-serif;
 }
 
 .transparent-button {

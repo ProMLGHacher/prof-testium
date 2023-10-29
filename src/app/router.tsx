@@ -1,4 +1,3 @@
-import React from 'react'
 import { Navigate, RouterProvider, createBrowserRouter } from 'react-router-dom'
 import Notifications from '../pages/Notifications/Notifications'
 import AddLesson from '../pages/addLesson/AddLesson'
@@ -14,6 +13,11 @@ import Register from '../pages/register/Register'
 import Welcome from '../pages/welcome/Welcome'
 import { useAppSelector } from '../store/hooks'
 import { selectRole, selectToken } from '../slices/authSlice'
+import Rating from '../pages/rating/Rating'
+import Emp from '../emp/Emp'
+import AddEmp from '../emp/AddEmp'
+import Ot from '../ot/Ot'
+import DetRating from '../pages/rating/DetRating'
 
 const router = createBrowserRouter([
     {
@@ -34,8 +38,28 @@ const router = createBrowserRouter([
                 element: <Profile />
             },
             {
+                path: '/main/emp',
+                element: <Emp />
+            },
+            {
+                path: '/main/emp/add/:id',
+                element: <AddEmp />
+            },
+            {
+                path: '/main/departments',
+                element: <Ot />
+            },
+            {
                 path: '/main/profile/changePassword',
                 element: <ChangePasswword />
+            },
+            {
+                path: '/main/rating',
+                element: <Rating />
+            },
+            {
+                path: '/main/rating/:id',
+                element: <DetRating />
             },
             {
                 path: '/main/profile/notifications',
@@ -50,7 +74,7 @@ const router = createBrowserRouter([
                 element: <AddLesson />
             },
             {
-                path: '/main/lessons/addTest',
+                path: '/main/lessons/addTest/:id',
                 element: <AddTest />
             }
         ]

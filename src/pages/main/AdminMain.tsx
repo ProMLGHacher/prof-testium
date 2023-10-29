@@ -59,7 +59,7 @@ const AdminMain = () => {
                             </NavLink>
                             <div onClick={() => {
                                 dispatch(logOut())
-                            }}  className='nav-drop'>
+                            }} className='nav-drop'>
                                 <h4>Выйти</h4>
                             </div>
                         </div>
@@ -87,6 +87,22 @@ const AdminMain = () => {
                     } to={'/main/hepl'}>
                         <h4>Поддержка</h4>
                         <img src={chat} alt="" />
+                    </NavLink>
+                    <NavLink className={({ isActive }) =>
+                        isActive
+                            ? "nav-button active"
+                            : "nav-button"
+                    } to={'/main/emp'}>
+                        <h4>Сотрудники</h4>
+                        <img src={profile} alt="" />
+                    </NavLink>
+                    <NavLink className={({ isActive }) =>
+                        isActive
+                            ? "nav-button active"
+                            : "nav-button"
+                    } to={'/main/departments'}>
+                        <h4>Отделы</h4>
+                        <img src={profile} alt="" />
                     </NavLink>
                     <NavLink className={({ isActive }) =>
                         isActive

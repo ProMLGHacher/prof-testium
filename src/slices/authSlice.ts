@@ -2,6 +2,7 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import type { PayloadAction } from '@reduxjs/toolkit'
 import { $api } from '../shared/api/api'
 import { RootState } from '../store/store'
+import { act } from 'react-dom/test-utils'
 
 interface AuthState {
     token: string | null,
@@ -40,24 +41,51 @@ export const authSlice = createSlice({
             localStorage.removeItem('role')
             localStorage.removeItem('name')
             localStorage.removeItem('phone')
+            window.location.reload()
         }
     },
     extraReducers: (builder) => {
         builder.addCase(regThunk.fulfilled, (state, action) => {
             localStorage.setItem('token', action.payload.token)
             localStorage.setItem('role', UserRole.Admin)
-            localStorage.setItem('name', action.payload.name)
+            localStorage.setItem('name', action.payload.name!)
             localStorage.setItem('phone', action.payload.phone)
             state.token = action.payload.token
             state.role = UserRole.Admin
             state.name = action.payload.name
             state.phone = action.payload.phone
+            window.location.reload()
         })
         builder.addCase(regThunk.rejected, (state, _action) => {
             localStorage.removeItem('token')
             localStorage.removeItem('role')
+            localStorage.removeItem('name')
+            localStorage.removeItem('phone')
             state.token = null
             state.role = null
+            state.name = null
+            state.phone = null
+        })
+        builder.addCase(loginThunk.fulfilled, (state, action) => {
+            localStorage.setItem('token', action.payload.token)
+            localStorage.setItem('role', UserRole.Admin)
+            localStorage.setItem('name', action.payload.name!)
+            localStorage.setItem('phone', action.payload.phone)
+            state.token = action.payload.token
+            state.role = action.payload.role
+            state.name = action.payload.name
+            state.phone = action.payload.phone
+            window.location.reload()
+        })
+        builder.addCase(loginThunk.rejected, (state, _action) => {
+            localStorage.removeItem('token')
+            localStorage.removeItem('role')
+            localStorage.removeItem('name')
+            localStorage.removeItem('phone')
+            state.token = null
+            state.role = null
+            state.name = null
+            state.phone = null
         })
         // builder.addCase(loginThunk.fulfilled, (state, action) => {
         //     localStorage.setItem('token', action.payload.token)
@@ -76,8 +104,9 @@ export const authSlice = createSlice({
 
 type TokenData = {
     token: string,
-    name: string,
+    name?: string,
     phone: string,
+    role?: UserRole
 }
 
 type AuthData = {
@@ -87,7 +116,9 @@ type AuthData = {
 }
 
 export const regThunk = createAsyncThunk<TokenData, AuthData>('regThunk', async (data, { dispatch }) => {
-    data.phoneAdmin = data.phoneAdmin.split('').filter((elem) => Number(elem)).join('')
+    data.phoneAdmin = data.phoneAdmin.split('').filter((elem) => {
+        return elem == '0' ? true : Number(elem)
+    }).join('')
     if (data.phoneAdmin[0] == '7') {
         const phone = data.phoneAdmin.split('')
         phone[0] = '8'
@@ -104,19 +135,41 @@ export const regThunk = createAsyncThunk<TokenData, AuthData>('regThunk', async 
     }
 })
 
-// export const loginThunk = createAsyncThunk<TokenData, AuthData>('logThunk', async (data, { dispatch }) => {
-//     const response = await $api.post<{
-//         tokenPair: {
-//             accessToken: string,
-//             refreshToken: string
-//         }
-//         role: UserRole
-//     }>('/signin', data)
-//     return {
-//         ...response.data,
-//         token: response.data.tokenPair.accessToken
-//     }
-// })
+type AuthDt = {
+    phone: string,
+    password: string
+}
+
+type Tokens = {
+    tokenPair: {
+        accessToken: string,
+        refreshToken: string
+    },
+    role: UserRole
+}
+
+export const loginThunk = createAsyncThunk<TokenData, AuthDt>('logThunk', async (data, { dispatch }) => {
+    
+    data.phone = data.phone.split('').filter((elem) => {
+        return elem == '0' ? true : Number(elem)
+    }).join('')
+    if (data.phone[0] == '7') {
+        const phone = data.phone.split('')
+        phone[0] = '8'
+        data.phone = phone.join('')
+    }
+    const response = await $api.post<{
+        tokenPair: {
+            accessToken: string,
+            refreshToken: string
+        },
+        role: UserRole
+    }>('/signin', data)
+    return {
+        phone: data.phone,
+        token: response.data.tokenPair.accessToken
+    }
+})
 
 
 export const { logOut } = authSlice.actions

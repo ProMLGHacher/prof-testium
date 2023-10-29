@@ -5,13 +5,38 @@ import upload from '../../assets/upload.svg'
 
 import './AddLesson.css'
 import { ChangeEvent, useState } from "react"
+import { $api } from "../../shared/api/api"
 
 const AddLesson = () => {
 
     const [filename, setFilename] = useState('')
 
+    const [file, setFile] = useState<File | undefined>(undefined)
+    const [name, setName] = useState('')
+
     const fileHandler = (e: ChangeEvent<HTMLInputElement>) => {
-        if (e.target.files?.[0]) setFilename(e.target.files[0].name)
+        if (!e.target.files?.[0]) return
+        setFilename(e.target.files[0].name)
+        setFile(e.target.files[0])
+    }
+
+    const sub = async () => {
+        if (!file) return
+        if (name.trim().length === 0) return
+        const data = await $api.post<
+            {
+                id: string,
+                name: string,
+                urlFile: string
+            }
+        >('/lectern', {
+            name: name
+        })
+
+        var formData = new FormData();
+        formData.append("image", file);
+        await $api.post(`/upload/lectern/${data.data.id}`, formData)
+        alert('Успешно')
     }
 
     return (
@@ -33,7 +58,9 @@ const AddLesson = () => {
                         <p style={{
                             opacity: '0.6'
                         }}>Название лекции</p>
-                        <CustomInput />
+                        <CustomInput value={name} onChange={(e) => {
+                            setName(e)
+                        }} />
                     </div>
                 </div>
                 <div style={{
@@ -45,7 +72,7 @@ const AddLesson = () => {
                     position: 'relative'
                 }}>
 
-                    <input onChange={fileHandler}  style={{
+                    <input onChange={fileHandler} style={{
                         opacity: '0',
                         position: 'absolute',
                         width: '100%',
@@ -60,7 +87,7 @@ const AddLesson = () => {
                             color: 'black'
                         }}>{filename}</p>
                     </label>
-                    <button style={{
+                    <button onClick={sub} style={{
                         width: '60%'
                     }} className="blue-button">Добавить</button>
                 </div>
