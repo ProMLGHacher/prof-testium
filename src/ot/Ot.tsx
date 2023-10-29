@@ -3,12 +3,16 @@ import PageTitle from '../shared/ui/PageTitle/PageTitle'
 import { Otdel } from '../pages/rating/Rating'
 import { $api } from '../shared/api/api'
 import CustomInput from '../shared/ui/CustomInput/CustomInput'
+import { useAppSelector } from '../store/hooks'
+import { UserRole, selectRole } from '../slices/authSlice'
 
 const Ot = () => {
 
     const [otdels, setOtdels] = useState<Otdel[]>([])
 
     const [name, setName] = useState('')
+
+    const role = useAppSelector(selectRole)
 
     const getOtdels = async () => {
         const data = await $api.get<Otdel[]>('/departments')
@@ -32,16 +36,20 @@ const Ot = () => {
     return (
         <div>
             <PageTitle text='Отделы' />
-            <CustomInput placeholder='Название отдела' value={name} onChange={(e) => {
-                setName(e)
-            }} />
-            <button onClick={() => {
-                ok()
-            }} style={{
-                width: '100%',
-                marginTop: '20px',
-                marginBottom: '40px'
-            }} className='blue-button'>Добавить</button>
+            {
+                role !== UserRole.Manager && <div>
+                    <CustomInput placeholder='Название отдела' value={name} onChange={(e) => {
+                        setName(e)
+                    }} />
+                    <button onClick={() => {
+                        ok()
+                    }} style={{
+                        width: '100%',
+                        marginTop: '20px',
+                        marginBottom: '40px'
+                    }} className='blue-button'>Добавить</button>
+                </div>
+            }
             <div style={{
                 display: 'flex',
                 flexDirection: 'column',

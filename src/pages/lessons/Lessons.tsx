@@ -48,6 +48,8 @@ const Lessons = () => {
         getOtdels()
     }, [])
 
+    
+
     useEffect(() => {
         if (otdels.length == 0) return
         getTests()

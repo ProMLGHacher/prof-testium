@@ -68,7 +68,7 @@ export const authSlice = createSlice({
         })
         builder.addCase(loginThunk.fulfilled, (state, action) => {
             localStorage.setItem('token', action.payload.token)
-            localStorage.setItem('role', UserRole.Admin)
+            localStorage.setItem('role', action.payload.role!)
             localStorage.setItem('name', action.payload.name!)
             localStorage.setItem('phone', action.payload.phone)
             state.token = action.payload.token

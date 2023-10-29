@@ -3,6 +3,8 @@ import PageTitle from '../shared/ui/PageTitle/PageTitle'
 import { $api } from '../shared/api/api'
 import { Otdel } from '../pages/rating/Rating'
 import AddButton from '../shared/ui/AddButton/AddButton'
+import { useAppSelector } from '../store/hooks'
+import { UserRole, selectRole } from '../slices/authSlice'
 
 const Emp = () => {
 
@@ -14,6 +16,8 @@ const Emp = () => {
         const data = await $api.get<Otdel[]>('/departments')
         setOtdels(data.data)
     }
+
+    const role = useAppSelector(selectRole)
 
     useEffect(() => {
         getOtdels()
@@ -73,14 +77,19 @@ const Emp = () => {
                             border: '1px solid #34343450'
                         }}>
                             {el}
-                        </div> : <AddButton to={'/main/emp/add/' + otdels[selected].id} >
+                        </div> : role !== UserRole.Manager ? <AddButton to={'/main/emp/add/' + otdels[selected].id} >
                             <div style={{
                                 padding: '20px',
                                 border: '1px solid #34343450'
                             }}>
                                 {el}
                             </div>
-                        </AddButton>
+                        </AddButton> : <div style={{
+                                padding: '20px',
+                                border: '1px solid #34343450'
+                            }}>
+                                {el}
+                            </div>
                     })
                 }
             </div>

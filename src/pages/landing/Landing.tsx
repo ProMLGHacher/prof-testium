@@ -10,6 +10,7 @@ import n3 from '../../assets/3.png'
 import { useNavigate } from 'react-router-dom'
 import { useAppSelector } from '../../store/hooks'
 import { selectToken } from '../../slices/authSlice'
+import { useEffect } from 'react'
 
 const Landing = () => {
 
