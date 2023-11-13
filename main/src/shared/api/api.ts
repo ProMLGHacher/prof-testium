@@ -1,8 +1,9 @@
 import axios, { AxiosInstance } from 'axios';
 import { redirect } from 'react-router-dom';
 import { RootState, store } from '../../store/store';
+import { logOut } from '../../slices/authSlice';
 
-const baseURL = 'http://192.168.0.101:8090/api/';
+const baseURL = 'https://9251-176-28-64-201.ngrok-free.app/api/';
 
 export const $api: AxiosInstance = axios.create({
     baseURL,
@@ -21,6 +22,19 @@ $api.interceptors.request.use(async (config) => {
 
     return config;
 });
+
+$api.interceptors.response.use(
+    (response) => response,
+    async (error) => {
+        const originalRequest = error.config;
+
+        if (error.response.status === 401) {
+            store.dispatch(logOut())
+        }
+
+        return Promise.reject(error);
+    }
+);
 
 // $api.interceptors.response.use(
 //     (response) => response,

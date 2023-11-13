@@ -54,7 +54,7 @@ export const authSlice = createSlice({
             state.role = UserRole.Admin
             state.name = action.payload.name
             state.phone = action.payload.phone
-            window.location.reload()
+            // window.location.reload()
         })
         builder.addCase(regThunk.rejected, (state, _action) => {
             localStorage.removeItem('token')
@@ -149,7 +149,9 @@ type Tokens = {
 }
 
 export const loginThunk = createAsyncThunk<TokenData, AuthDt>('logThunk', async (data, { dispatch }) => {
-    
+
+
+
     data.phone = data.phone.split('').filter((elem) => {
         return elem == '0' ? true : Number(elem)
     }).join('')
@@ -167,6 +169,7 @@ export const loginThunk = createAsyncThunk<TokenData, AuthDt>('logThunk', async 
     }>('/signin', data)
     return {
         phone: data.phone,
+        role: response.data.role,
         token: response.data.tokenPair.accessToken
     }
 })

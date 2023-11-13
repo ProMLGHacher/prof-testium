@@ -30,7 +30,7 @@ function Register() {
           }} className='field' img={email} placeholder={'Телефон'} />
           <EditText value={name} onChange={(e) => {
             setName(e)
-          }} className='field' img={lock} placeholder={'ФИО'} />
+          }} className='field' img={lock} placeholder={'Название организации'} />
           <EditText value={password} onChange={(e) => {
             setPassword(e)
           }} className='field' img={lock} placeholder={'Пароль'} />

@@ -51,6 +51,13 @@ const Profile = () => {
                     }}>Tелефон</p>
                     <CustomInput value={user?.phone} />
                 </div>
+                <div>
+                    <p style={{
+                        fontSize: '16px',
+                        opacity: '0.6'
+                    }}>Роль</p>
+                    <CustomInput value={user?.role} />
+                </div>
             </div>
         </div>
     )

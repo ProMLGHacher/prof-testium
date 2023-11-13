@@ -40,12 +40,13 @@ const Module = () => {
                             border: '2px solid rgb(80, 80, 80)',
                             borderRadius: '20px'
                         }}>
-                            <p>{new Date(elem.date).getMonth() < 10 && 0}{new Date(elem.date).getMonth()}.{new Date(elem.date).getDay() < 10 && 0}{new Date(elem.date).getDay()}.{new Date(elem.date).getFullYear()} {new Date(elem.date).getHours()}:{new Date(elem.date).getMinutes()}</p>
+                            <p>дата {new Date(elem.date).getMonth() < 10 && 0}{new Date(elem.date).getMonth()}.{new Date(elem.date).getDay() < 10 && 0}{new Date(elem.date).getDay()}.{new Date(elem.date).getFullYear()} {new Date(elem.date).getHours()}:{new Date(elem.date).getMinutes()}</p>
                             <p>{elem.descriptionEvaluationReason}</p>
-                            <p>{elem.duration}</p>
-                            <p>{`${elem.isSuccessful}`}</p>
-                            <p>{elem.mark}</p>
-                            <p>{elem.maxScore}</p>
+                            <p>время прохождения {elem.duration}</p>
+                            <p>{`${elem.isSuccessful ? 'выполнено' : 'не выполнено'}`}</p>
+                            <p>оценка {elem.mark}</p>
+                            <p>баллы {elem.score}</p>
+                            <p>максимальное количество баллов {elem.maxScore}</p>
                             <a href={elem.urlRecordingFile}>{elem.urlRecordingFile}</a>
                         </div>
                     })

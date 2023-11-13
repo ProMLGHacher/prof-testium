@@ -137,7 +137,7 @@ const manRouter = createBrowserRouter([
             },
             {
                 path: '/main/lessons/addTest/:id',
-                element: <AddTest />
+                element: <PageTitle text='Нет доступа' />
             }
         ]
     }

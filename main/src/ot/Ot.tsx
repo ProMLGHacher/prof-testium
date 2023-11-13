@@ -10,6 +10,8 @@ const Ot = () => {
 
     const [otdels, setOtdels] = useState<Otdel[]>([])
 
+    const { namee } = { namee: '67890' }
+
     const [name, setName] = useState('')
 
     const role = useAppSelector(selectRole)

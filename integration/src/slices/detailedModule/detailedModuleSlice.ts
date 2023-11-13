@@ -9,7 +9,7 @@ interface DetailedModuleState {
 }
 
 const initialState: DetailedModuleState = {
-    isLoading: true
+    "isLoading" : true
 }
 
 export const detailedModuleSlice = createSlice({
