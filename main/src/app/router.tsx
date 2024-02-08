@@ -27,6 +27,14 @@ const router = createBrowserRouter([
         errorElement: <Navigate to={'/'} />
     },
     {
+        path: '/registration',
+        element: <Navigate to={'/'} />
+    },
+    {
+        path: '/auth',
+        element: <Navigate to={'/'} />
+    },
+    {
         path: '/main',
         element: <AdminMain />,
         children: [
@@ -86,6 +94,14 @@ const manRouter = createBrowserRouter([
         path: '/',
         element: <Landing />,
         errorElement: <Navigate to={'/'} />
+    },
+    {
+        path: '/registration',
+        element: <Navigate to={'/'} />
+    },
+    {
+        path: '/auth',
+        element: <Navigate to={'/'} />
     },
     {
         path: '/main',
@@ -182,7 +198,7 @@ const authRouter = createBrowserRouter([
     },
     {
         path: '/main',
-        element:  <PageTitle text='Нет доступа' />
+        element: <PageTitle text='Нет доступа' />
     }
 ])
 
@@ -192,12 +208,12 @@ const Router = () => {
     const role = useAppSelector(selectRole)
 
     return (
-        <RouterProvider router={token ?
+        token ?
             role == UserRole.Admin ?
-                router : role == UserRole.HrManager ?
-                    router : role == UserRole.Manager ?
-                    manRouter : authRouter
-            : nonAuthRouter} />
+                <RouterProvider router={router} /> : role == UserRole.HrManager ?
+                    <RouterProvider router={router} /> : role == UserRole.Manager ?
+                        <RouterProvider router={manRouter} /> : <RouterProvider router={authRouter} />
+            : <RouterProvider router={nonAuthRouter} />
     )
 }
 

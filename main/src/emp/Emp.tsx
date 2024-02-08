@@ -7,7 +7,7 @@ import { useAppSelector } from '../store/hooks'
 import { UserRole, selectRole } from '../slices/authSlice'
 
 const Emp = () => {
-
+    
     const [otdels, setOtdels] = useState<Otdel[]>([])
     const [emp, setEmp] = useState<string[]>([])
     const [selected, setSetselected] = useState(0)
@@ -71,13 +71,18 @@ const Emp = () => {
                 marginBlock: '40px'
             }}>
                 {
+                    emp.length == 0 && <AddButton to={'/main/emp/add/' + otdels[selected].id} >
+                        <div></div>
+                    </AddButton>
+                }
+                {
                     emp.map((el, index) => {
                         return index !== emp.length - 1 ? <div style={{
                             padding: '20px',
                             border: '1px solid #34343450'
                         }}>
                             {el}
-                        </div> : role !== UserRole.Manager ? <AddButton to={'/main/emp/add/' + otdels[selected].id} >
+                        </div> : [UserRole.Admin, UserRole.Manager].includes(role!) ? <AddButton to={'/main/emp/add/' + otdels[selected].id} >
                             <div style={{
                                 padding: '20px',
                                 border: '1px solid #34343450'
@@ -85,11 +90,11 @@ const Emp = () => {
                                 {el}
                             </div>
                         </AddButton> : <div style={{
-                                padding: '20px',
-                                border: '1px solid #34343450'
-                            }}>
-                                {el}
-                            </div>
+                            padding: '20px',
+                            border: '1px solid #34343450'
+                        }}>
+                            {el}
+                        </div>
                     })
                 }
             </div>

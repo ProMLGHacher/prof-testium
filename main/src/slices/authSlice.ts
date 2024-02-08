@@ -149,9 +149,6 @@ type Tokens = {
 }
 
 export const loginThunk = createAsyncThunk<TokenData, AuthDt>('logThunk', async (data, { dispatch }) => {
-
-
-
     data.phone = data.phone.split('').filter((elem) => {
         return elem == '0' ? true : Number(elem)
     }).join('')
