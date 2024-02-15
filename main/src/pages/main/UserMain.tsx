@@ -1,5 +1,5 @@
 import { Link, NavLink, Outlet } from 'react-router-dom'
-import './AdminMain.css'
+import './UserMain.css'
 
 import activity from '../../assets/Activity.svg'
 import calling from '../../assets/Calling.svg'
@@ -10,7 +10,7 @@ import Header from '../../shared/ui/header/Header'
 import { useAppDispatch } from '../../store/hooks'
 import { logOut } from '../../slices/authSlice'
 
-const AdminMain = () => {
+const UserMain = () => {
 
     const dispatch = useAppDispatch()
 
@@ -77,22 +77,6 @@ const AdminMain = () => {
                         isActive
                             ? "nav-button active"
                             : "nav-button"
-                    } to={'/main/emp'}>
-                        <h4>Сотрудники</h4>
-                        <img src={profile} alt="" />
-                    </NavLink>
-                    <NavLink className={({ isActive }) =>
-                        isActive
-                            ? "nav-button active"
-                            : "nav-button"
-                    } to={'/main/departments'}>
-                        <h4>Отделы</h4>
-                        <img src={profile} alt="" />
-                    </NavLink>
-                    <NavLink className={({ isActive }) =>
-                        isActive
-                            ? "nav-button active"
-                            : "nav-button"
                     } to={'/main/mobile'}>
                         <h4>Мобильная версия</h4>
                         <img src={calling} alt="" />
@@ -108,4 +92,4 @@ const AdminMain = () => {
     )
 }
 
-export default AdminMain
+export default UserMain

@@ -15,21 +15,19 @@ type Question = {
     answers: Answer[]
 }
 
+const initAnswer = (): Answer => {
+    return {
+        answer: ''
+    }
+}
+
 const initQuestion = (): Question => {
     return {
         question: '',
         rightAnswer: 0,
         answers: [
-            {
-                answer: ''
-            }
+            initAnswer()
         ]
-    }
-}
-
-const initAnswer = (): Answer => {
-    return {
-        answer: ''
     }
 }
 
@@ -60,6 +58,7 @@ const AddTest = () => {
                 }
             })
         })
+        setName('')
         setQuestions([
             initQuestion()
         ])
@@ -146,7 +145,7 @@ const AddTest = () => {
                                     }}>
                                         {
                                             ques.answers.map((elem, index) => {
-                                                return <div style={{
+                                                return <div key={elem.answer} style={{
                                                     display: 'flex',
                                                     alignItems: 'center',
                                                     justifyContent: 'space-between',
@@ -189,11 +188,6 @@ const AddTest = () => {
                                         }
                                     </div>
                                 </div>
-                            </div>
-                            <div style={{
-                                padding: '20px'
-                            }}>
-                                <button className='blue-button'>Сохранить</button>
                             </div>
                         </div>
                     })

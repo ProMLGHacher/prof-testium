@@ -29,7 +29,7 @@ const Header = (props: HeaderProps) => {
                         navigate('/main')
                     }} className='transparent-button'>Личный кабинет</button> : <button onClick={() => {
                         navigate('/registration')
-                    }} className='transparent-button'>Войти в систему</button> 
+                    }} className='transparent-button'>Войти в систему</button>
                 }
             </div>
             <div className="divider" />
@@ -44,8 +44,9 @@ const Header = (props: HeaderProps) => {
                     gap: '20px',
                     alignItems: 'center'
                 }}>
-                    <a className='phone' href="tel:+70000000000">+ 7 (000) 000 00 00</a>
-                    <LangSwitcher />
+                    <a style={{
+                        color: 'white'
+                    }} className='phone' href="tel:+70000000000">+ 7 (000) 000 00 00</a>
                 </div>
             </div>
             <div className="divider" />

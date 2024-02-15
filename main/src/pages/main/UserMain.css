@@ -1,0 +1,79 @@
+.wrapper {
+    display: flex;
+    margin-top: 40px;
+    gap: 20px;
+}
+
+.nav-button {
+    width: 240px;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    color: white;
+    text-decoration: none;
+    background-color: #193D9B;
+
+    position: relative;
+}
+
+.active {
+    background-color: rgba(186, 198, 229, 1);
+}
+
+.nav-button-dropped {
+    display: none;
+}
+
+.nav-button:hover .nav-button-dropped {
+
+    display: block;
+
+    position: absolute;
+
+    top: 0;
+    left: calc(100% + 20px);
+}
+
+.nav-button-dropped::after {
+    content: '';
+    position: absolute;
+    left: -20px;
+    top: 0;
+    bottom: 0;
+    background-color: white;
+    width: 20px;
+}
+
+.nav-drop {
+    width: 240px;
+    padding-block: 20px;
+    display: flex;
+    justify-content: center;
+    color: white;
+    text-decoration: none;
+    background-color: #193D9B;
+}
+
+.nav-drop.active {
+    background-color: rgba(186, 198, 229, 1);
+}
+
+.nav-button-dropped:hover .nav-button-dropped {
+
+    display: block;
+
+    position: absolute;
+
+    top: 0;
+    left: 110%;
+
+    width: 240px;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    color: white;
+    text-decoration: none;
+    background-color: rgba(186, 198, 229, 1);
+}

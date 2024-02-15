@@ -19,6 +19,9 @@ import AddEmp from '../emp/AddEmp'
 import Ot from '../ot/Ot'
 import DetRating from '../pages/rating/DetRating'
 import PageTitle from '../shared/ui/PageTitle/PageTitle'
+import UserMain from '../pages/main/UserMain'
+import LessonsUser from '../pages/lessons/LessonsUser'
+import Test from '../pages/Test/Test'
 
 const router = createBrowserRouter([
     {
@@ -198,7 +201,61 @@ const authRouter = createBrowserRouter([
     },
     {
         path: '/main',
-        element: <PageTitle text='Нет доступа' />
+        element: <UserMain />,
+        children: [
+            {
+                path: '/main/mobile',
+                element: <Mobile />
+            },
+            {
+                path: '/main/profile',
+                element: <Profile />
+            },
+            {
+                path: '/main/emp',
+                element: <Emp />
+            },
+            {
+                path: '/main/emp/add/:id',
+                element: <PageTitle text='Нет доступа' />
+            },
+            {
+                path: '/main/departments',
+                element: <Ot />
+            },
+            {
+                path: '/main/profile/changePassword',
+                element: <ChangePasswword />
+            },
+            {
+                path: '/main/rating',
+                element: <Rating />
+            },
+            {
+                path: '/main/rating/:id',
+                element: <DetRating />
+            },
+            {
+                path: '/main/profile/notifications',
+                element: <Notifications />
+            },
+            {
+                path: '/main/lessons',
+                element: <LessonsUser />
+            },
+            {
+                path: '/main/lessons/:id',
+                element: <Test />
+            },
+            {
+                path: '/main/lessons/add',
+                element: <PageTitle text='Нет доступа' />
+            },
+            {
+                path: '/main/lessons/addTest/:id',
+                element: <PageTitle text='Нет доступа' />
+            }
+        ]
     }
 ])
 

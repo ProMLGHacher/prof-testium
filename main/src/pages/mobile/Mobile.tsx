@@ -30,8 +30,9 @@ const Mobile = () => {
                     <div style={{
                         marginTop: '10px'
                     }} className="buttons">
-                        <button>ok</button>
-                        <button>okok</button>
+                        <img style={{
+                            cursor: 'pointer'
+                        }} width={'300px'} src="/gp.png" alt="" />
                     </div>
                 </div>
             </div>

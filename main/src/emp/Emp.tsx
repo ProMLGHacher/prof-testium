@@ -7,7 +7,7 @@ import { useAppSelector } from '../store/hooks'
 import { UserRole, selectRole } from '../slices/authSlice'
 
 const Emp = () => {
-    
+
     const [otdels, setOtdels] = useState<Otdel[]>([])
     const [emp, setEmp] = useState<string[]>([])
     const [selected, setSetselected] = useState(0)
@@ -71,7 +71,7 @@ const Emp = () => {
                 marginBlock: '40px'
             }}>
                 {
-                    emp.length == 0 && <AddButton to={'/main/emp/add/' + otdels[selected].id} >
+                    emp.length == 0 && otdels[selected] && <AddButton to={'/main/emp/add/' + otdels[selected].id} >
                         <div></div>
                     </AddButton>
                 }
