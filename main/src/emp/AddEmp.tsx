@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 import PageTitle from "../shared/ui/PageTitle/PageTitle"
 import CustomInput from "../shared/ui/CustomInput/CustomInput"
 import { UserRole } from "../slices/authSlice"
@@ -15,7 +15,21 @@ const AddEmp = () => {
     const [phone, setPhone] = useState('')
     const [password, setPassword] = useState('')
 
+    const navigate = useNavigate()
+
     const sub = () => {
+        if (phone.trim().length == 0) {
+            alert('Не все поля заполнены')
+            return
+        }
+        if (fullname.trim().length == 0) {
+            alert('Не все поля заполнены')
+            return
+        }
+        if (password.trim().length == 0) {
+            alert('Не все поля заполнены')
+            return
+        }
         $api.post('/signup/employe', {
             "phone": phone,
             "fullname": fullname,
@@ -23,6 +37,12 @@ const AddEmp = () => {
             "password": password,
             "role": role
         })
+            .then(e => {
+                if (e.status == 200) {
+                    alert('Успешно')
+                    navigate('/main/emp')
+                }
+            })
     }
 
 
@@ -53,7 +73,7 @@ const AddEmp = () => {
             }}>
                 <div style={{
                     display: 'flex',
-                    flexDirection: 'column',
+                    gap: '10px',
                     alignItems: 'center',
                     marginTop: '40px'
                 }}>
@@ -61,27 +81,13 @@ const AddEmp = () => {
                     <input checked={UserRole.Employee === role} onClick={() => {
                         setRole(UserRole.Employee)
                     }} style={{
-                        width: '40px',
-                        height: '40px',
+                        width: '20px',
+                        height: '20px',
                     }} type="checkbox" />
                 </div>
                 <div style={{
                     display: 'flex',
-                    flexDirection: 'column',
-                    alignItems: 'center',
-                    marginTop: '40px'
-                }}>
-                    <p>HR</p>
-                    <input checked={UserRole.HrManager === role} onClick={() => {
-                        setRole(UserRole.HrManager)
-                    }} style={{
-                        width: '40px',
-                        height: '40px',
-                    }} type="checkbox" />
-                </div>
-                <div style={{
-                    display: 'flex',
-                    flexDirection: 'column',
+                    gap: '10px',
                     alignItems: 'center',
                     marginTop: '40px'
                 }}>
@@ -89,8 +95,8 @@ const AddEmp = () => {
                     <input checked={UserRole.Manager === role} onClick={() => {
                         setRole(UserRole.Manager)
                     }} style={{
-                        width: '40px',
-                        height: '40px',
+                        width: '20px',
+                        height: '20px',
                     }} type="checkbox" />
                 </div>
             </div>

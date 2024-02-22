@@ -3,12 +3,14 @@ import type { PayloadAction } from '@reduxjs/toolkit'
 import { $api } from '../shared/api/api'
 import { RootState } from '../store/store'
 import { act } from 'react-dom/test-utils'
+import { AxiosError, isAxiosError } from 'axios'
 
 interface AuthState {
     token: string | null,
     role?: UserRole | null,
     name?: string | null,
     phone?: string | null,
+    error?: string | undefined
 }
 
 export enum UserRole {
@@ -124,10 +126,19 @@ export const regThunk = createAsyncThunk<TokenData, AuthData>('regThunk', async 
         phone[0] = '8'
         data.phoneAdmin = phone.join('')
     }
-    const response = await $api.post<{
-        accessToken: string,
-        refreshToken: string
-    }>('/organization', data)
+    let response = undefined
+    try {
+        response = await $api.post<{
+            accessToken: string,
+            refreshToken: string
+        }>('/organization', data)
+    } catch(e) {
+        if (isAxiosError(e)) {
+            e.response?.status == 400 && alert('Данный номер уже зарегистрирован')
+            e.response?.status == 409 && alert('Организация с таким именем уже существует')
+        }
+    }
+    if (!response) throw new Error('')
     return {
         token: response.data.accessToken,
         name: data.name,
@@ -157,13 +168,22 @@ export const loginThunk = createAsyncThunk<TokenData, AuthDt>('logThunk', async 
         phone[0] = '8'
         data.phone = phone.join('')
     }
-    const response = await $api.post<{
-        tokenPair: {
-            accessToken: string,
-            refreshToken: string
-        },
-        role: UserRole
-    }>('/signin', data)
+    let response = undefined
+    try {
+        response = await $api.post<{
+            tokenPair: {
+                accessToken: string,
+                refreshToken: string
+            },
+            role: UserRole
+        }>('/signin', data)
+    } catch(e) {
+        if (isAxiosError(e)) {
+            e.response?.status == 404 && alert('Аккаунт не существует')
+            e.response?.status == 400 && alert('Не верный пароль')
+        }
+    }
+    if (!response) throw new Error('')
     return {
         phone: data.phone,
         role: response.data.role,

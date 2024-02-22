@@ -2,33 +2,25 @@ import { useParams } from 'react-router-dom'
 import './Test.css'
 import { useEffect, useState } from 'react'
 import { $api } from '../../shared/api/api'
+import TestComponent from './TestUser'
+import { Test as TestType } from './TestTypes'
 
 const Test = () => {
 
     const params = useParams()
 
-    const [test, setTest] = useState<{
-        questions: any[]
-    }>()
+    const [test, setTest] = useState<TestType>()
 
     useEffect(() => {
-        $api.get(`/test/${params.id}`)
+        $api.get<TestType>(`/test/${params.id}`)
             .then(e => {
-                console.log(e.data);
-                
                 setTest(e.data)
             })
     }, [])
 
     return (
         <div>
-            {
-                test?.questions.map(e => {
-                    return <div>
-                        {e.name}
-                    </div>
-                })
-            }
+            {test && <TestComponent test={test} />}
         </div>
     )
 }

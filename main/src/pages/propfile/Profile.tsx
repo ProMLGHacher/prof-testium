@@ -6,7 +6,7 @@ import { $api } from '../../shared/api/api'
 
 type User = {
     phone: string,
-    role: number,
+    role?: "Employee" | 'HrManager' | 'Manager' | 'Admin',
     email: string,
     fullname: string,
     urlIcon: string
@@ -14,7 +14,12 @@ type User = {
 
 const Profile = () => {
 
-    const [user, setUser] = useState<User | undefined>(undefined)
+    const [user, setUser] = useState<User>({
+        email: '',
+        fullname: '',
+        phone: '',
+        urlIcon: ''
+    })
 
     useEffect(() => {
         $api.get<User>('/profile').then((e) => {
@@ -26,23 +31,31 @@ const Profile = () => {
         <div>
             <PageTitle text='Общая информация' />
             <div style={{
-                display: 'grid',
-                gridGap: '20px',
-                gridTemplateColumns: 'repeat(auto-fill, minmax(400px, 1fr))'
+                display: 'flex',
+                flexDirection: 'column',
+                gap: '20px',
             }}>
                 <div>
                     <p style={{
                         fontSize: '16px',
                         opacity: '0.6'
                     }}>ФИО</p>
-                    <CustomInput value={user?.fullname} />
+                    <CustomInput value={user?.fullname} onChange={e => {
+                        setUser((prev) => {
+                            return { ...prev, fullname: e }
+                        })
+                    }} />
                 </div>
                 <div>
                     <p style={{
                         fontSize: '16px',
                         opacity: '0.6'
                     }}>Email</p>
-                    <CustomInput value={user?.email} />
+                    <CustomInput value={user?.email} onChange={e => {
+                        setUser((prev) => {
+                            return { ...prev, email: e }
+                        })
+                    }} />
                 </div>
                 <div>
                     <p style={{
@@ -56,9 +69,29 @@ const Profile = () => {
                         fontSize: '16px',
                         opacity: '0.6'
                     }}>Роль</p>
-                    <CustomInput value={user?.role} />
+                    <CustomInput value={user?.role == 'Admin' ? 'Админ' : user?.role == 'Employee' ? 'Сотрудник' : user?.role == 'HrManager' ? 'HR' : 'Менеджер'} />
                 </div>
             </div>
+            <button style={{
+                minWidth: '240px',
+                marginTop: '20px'
+            }} className='blue-button' onClick={() => {
+                if (user.fullname.length == 0) {
+                    alert('ФИО не заполнено')
+                    return
+                }
+                $api.put('/profile', {
+                    "email": user.email,
+                    "fullname": user.fullname
+                })
+                    .then(e => {
+                        if (e.status == 200) {
+                            alert('Сохранено')
+                        }
+                    })
+            }}>
+                Сохранить
+            </button>
         </div>
     )
 }

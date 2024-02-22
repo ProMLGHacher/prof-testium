@@ -3,7 +3,12 @@
 .header-wrapper {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     padding-block: 20px;
+}
+
+.link {
+    text-decoration: none;
 }
 
 .divider {

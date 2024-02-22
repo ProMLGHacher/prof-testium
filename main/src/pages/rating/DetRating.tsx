@@ -4,9 +4,11 @@ import { useEffect, useState } from "react"
 import { $api } from "../../shared/api/api"
 
 type Ok = {
+    id: string,
     testName: string,
-    countPoints: number,
-    maxCountPoints: number
+    averageCountPoints: number,
+    maxCountPointsByTest: number,
+    isCompleted: boolean,
   }
 
 const DetRating = () => {
@@ -17,6 +19,8 @@ const DetRating = () => {
 
     const getAn = async () => {
         const data = await $api.get<Ok[]>('/tests/analytics/' + id)
+        console.log(data.data);
+        
         setOk(data.data)
     }
 
@@ -39,7 +43,7 @@ const DetRating = () => {
                                 marginBlock: '20px',
                             }}>
                                 <p>{elem.testName}</p>
-                                <p>{elem.countPoints} из {elem.maxCountPoints}</p>
+                                <p>{elem.averageCountPoints} из {elem.maxCountPointsByTest}</p>
                             </div>
                     })
                 }

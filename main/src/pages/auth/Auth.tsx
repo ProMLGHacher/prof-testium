@@ -28,8 +28,13 @@ function Auth() {
           <EditText value={password} onChange={(e) => {
             setPassword(e)
           }} className='field' img={lock} placeholder={'Пароль'} />
-          <div className='buttons'>
-            <button onClick={() => {
+          <div style={{
+            flexDirection: 'column',
+            gap: '6px'
+          }} className='buttons'>
+            <button style={{
+              width: '50%'
+            }} onClick={() => {
               dispatch(loginThunk({
                 phone: phone,
                 password: password
@@ -37,7 +42,7 @@ function Auth() {
             }} className='white-button btn'>Войти!</button>
             <div className='links'>
               <Link className='link' to={'/registration'} >У меня нет аккаунта</Link>
-              <Link className='link' to={'/'} >Я не помню пароль</Link>
+              {/* <Link className='link' to={'/'} >Я не помню пароль</Link> */}
             </div>
           </div>
         </div>

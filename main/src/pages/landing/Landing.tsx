@@ -4,13 +4,10 @@ import './Landing.css'
 import logo from '../../assets/logo-blue.svg'
 import logoBlue from '../../assets/logo.svg'
 import about from '../../assets/aboutImg.png'
-import n1 from '../../assets/1.png'
-import n2 from '../../assets/2.png'
-import n3 from '../../assets/3.png'
 import { useNavigate } from 'react-router-dom'
 import { useAppSelector } from '../../store/hooks'
 import { selectToken } from '../../slices/authSlice'
-import { useEffect } from 'react'
+import ScrollableAnchor from 'react-scrollable-anchor'
 
 const Landing = () => {
 
@@ -21,19 +18,21 @@ const Landing = () => {
         <>
             <section className='main'>
                 <Header />
-                <div className='container main-wrapper'>
+                <div style={{
+                    gap: '10%'
+                }} className='container main-wrapper'>
                     <div className='left-side'>
-                        <h1 className='title'>ПРОФТЕСТИУМ - ВАШ УНИВЕРСАЛЬНЫЙ ПОМОщНИК для вашего производства</h1>
-                        <p className='subtitle'>Создайте любую структуру компании и определите роли и Убедитесь, что каждый член команды понимает свою роль правильно и знает о ответственности.</p>
+                        <h1 style={{
+                            marginBottom: '0px'
+                        }} className='title'>Современная платформа для обучения сотрудников предприятий с использованием VR-технологий</h1>
+                        <p style={{
+                            marginBottom: '10px'
+                        }} className='subtitle'>Создайте инновационную систему обучения и оценки знаний сотрудников на предприятии, используя VR-технологии. Мы предлагаем интерактивные обучающие модули для эффективного повышения профессиональных навыков сотрудников.</p>
                         <div className='buttons'>
-                            {
-                                token ? <button onClick={() => {
-                                    navigate('/main')
-                                }} className='white-button btn'>Личный кабинет</button> : <button onClick={() => {
-                                    navigate('/registration')
-                                }} className='white-button btn'>Войти в систему</button> 
-                            }
-                            <button className='transparent-button btn'>Видео о платформе</button>
+                            <button onClick={() => {
+                                navigate('/registration')
+                            }} className='white-button btn'>Получить бесплатно</button>
+                            <div className='btn'></div>
                         </div>
                     </div>
                     <img className='welcome-img' src={welcome} alt="" />
@@ -42,94 +41,67 @@ const Landing = () => {
             <section id='1' className='container advantages'>
                 <div className='advantage'>
                     <div className='top'>
-                        <h2 className='advantage-title'>Быстрый старт к оптимизации</h2>
                         <p className='number'>01</p>
                     </div>
-                    <p className="advantage-subtitle">Анализ текущих процессов: Проведите анализ текущих процессов для выявления узких мест, излишних шагов и потенциальных улучшений.</p>
+                    <p className="advantage-subtitle">Проводите анализ текущих процессов для выявления узких мест, излишних шагов и потенциальных улучшений.</p>
                 </div>
                 <div className='advantage'>
                     <div className='top'>
-                        <h2 className='advantage-title'>Удобный рейтинг сотрудников</h2>
                         <p className='number'>02</p>
                     </div>
-                    <p className="advantage-subtitle">Рейтинги не только могут быть использованы для оценки производительности, но и для определения областей, требующих дальнейшего развития. </p>
+                    <p className="advantage-subtitle">Рейтинги для оценки производительности и определения областей, требующих дальнейшего развития.</p>
                 </div>
                 <div className='advantage'>
                     <div className='top'>
-                        <h2 className='advantage-title'>Разделение по отделам</h2>
                         <p className='number'>03</p>
                     </div>
-                    <p className="advantage-subtitle">Определите основные функциональные области или департаменты, необходимые для работы вашей организации и опредилите полезные лекции</p>
+                    <p className="advantage-subtitle">Определяйте основные функциональные области и департаменты, необходимые для работы вашей организации.</p>
                 </div>
                 <div className='advantage'>
                     <div className='top'>
-                        <h2 className='advantage-title'>Быстрый просмотр материалов</h2>
                         <p className='number'>04</p>
                     </div>
-                    <p className="advantage-subtitle">Эффективный способ быстро получить общее представление о содержании или суть материалов, не тратя много времени на полное чтение или изучение</p>
+                    <p className="advantage-subtitle">Быстро и эффективно получайте общее представление о содержании и сути материалов.</p>
                 </div>
                 <div className='advantage'>
                     <div className='top'>
-                        <h2 className='advantage-title'>Онлайн конструктор тестов</h2>
                         <p className='number'>05</p>
                     </div>
-                    <p className="advantage-subtitle">Программный инструмент, который позволяет пользователям создавать и настраивать тесты</p>
+                    <p className="advantage-subtitle">Создавайте и настраивайте корпоративные тесты для сотрудников через наш программный инструмент.</p>
                 </div>
-                <div className='advantage-last'>
-                    <p className='start'>Начать</p>
+                <div className='advantage'>
+                    <div className='top'>
+                        <p className='number'>06</p>
+                    </div>
+                    <p className="advantage-subtitle">Повышайте эффективность обучения сотрудников практическим навыкам за счет VR-симуляций.</p>
                 </div>
             </section>
-            <section id='2' className='container about'>
-                <div className='about-item'>
-                    <img className='about-logo' src={logo} alt="" />
-                    <p style={{
-                        width: '70%',
-                        marginTop: '20px'
-                    }}>Школа для повышения квалификации работников промышленных предприятий c внедрением VR-технологий. <br /> <br /> Дать сотрудникам возможность обучаться безопасно и повышать эффективность сотрудника с помощью соревнований сотрудников и отделов.</p>
-                </div>
-                <img className='about-item' src={about} alt="" />
-            </section>
-            <section id='3' className='container news'>
-                <h1 style={{
-                    textAlign: 'center'
-                }}>Новости компании</h1>
-                <div className='news-wrapper'>
-                    <div className='new'>
-                        <img src={n1} alt="" />
-                        <h3>Пивоваренная компания «Балтика»</h3>
-                        <p>Один из крупнейших в России производителей товаров народного потребления. Широкий портфель брендов, включающий около 40 пивных национальных и региональных брендов и 2 непивных бренда</p>
+            <ScrollableAnchor id='#2'>
+                <section id={'2'} className='container about'>
+                    <div className='about-item'>
+                        <img className='about-logo' src={logo} alt="" />
+                        <p style={{
+                            width: '70%',
+                            marginTop: '20px'
+                        }}>
+                            Мы предлагаем интерактивные обучающие модули для эффективного повышения профессиональных навыков сотрудников.
+                            <br />
+                            <br />
+                            Наша платформа предоставляет возможность создания собственных порталов для обучения и тестирования сотрудников. Это упрощает организацию обучения, контроль уровня знаний и повышение качества работы сотрудников.
+                        </p>
                     </div>
-                    <div className='new'>
-                        <img src={n2} alt="" />
-                        <h3>«Газпром» — энергетическая компания.</h3>
-                        <p>Основные направления деятельности — геологоразведка, добыча, транспортировка, хранение, переработка и реализация газа, газового конденсата и нефти, реализация газа в качестве моторного топлива, а также производство и сбыт тепло- и электроэнергии.</p>
-                    </div>
-                    <div className='new'>
-                        <img src={n3} alt="" />
-                        <h3>Медицинский центр Medical On Group</h3>
-                        <p>Компания смогла самостоятельно создать свою нишу на рынке предлагаемых медицинских услуг и предложила уникальные методы терапии с гарантированным результатом.</p>
-                    </div>
-                </div>
-            </section>
+                    <img className='about-item' src={about} alt="" />
+                </section>
+            </ScrollableAnchor>
             <footer className='footer'>
-                <div className='container footer-nav-wrapper'>
-                    <img src={logoBlue} alt="" />
-                    <ul>
-                        <li>О компании</li>
-                        <li>Деятельность</li>
-                        <li>Персонал</li>
-                        <li>Клиенту</li>
-                    </ul>
-                    <ul>
-                        <li>Акционеру и инвестору</li>
-                        <li>Пресс-центр</li>
-                        <li>Торги</li>
-                        <li>Контакты</li>
-                    </ul>
-                    <div>
-                        <h5>Местонахождение</h5>
-                        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Consequatur saepe laudantium repudiandae, itaque nihil delectus?</p>
-                    </div>
+                <div style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center'
+                }} className='container footer-nav-wrapper'>
+                    <img style={{
+                        width: '200px'
+                    }} src={logoBlue} alt="" />
                 </div>
             </footer>
         </>

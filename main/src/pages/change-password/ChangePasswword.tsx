@@ -1,32 +1,63 @@
+import { useState } from "react"
+import { $api } from "../../shared/api/api"
 import CustomInput from "../../shared/ui/CustomInput/CustomInput"
 import PageTitle from "../../shared/ui/PageTitle/PageTitle"
 
 const ChangePasswword = () => {
+
+    const [newPass, setNewPass] = useState('')
+    const [repeatNewPass, setRepeatNewPass] = useState('')
+
   return (
     <div>
         <PageTitle text="Сменить пароль" />
         <div style={{
-                display: 'grid',
-                gridGap: '20px',
-                gridTemplateColumns: 'repeat(auto-fill, minmax(400px, 1fr))'
+                display: 'flex',
+                gap: '20px',
+                flexDirection: 'column'
             }}>
                 <div>
                     <p style={{
                         fontSize: '16px',
                         opacity: '0.6',
-                        textTransform: 'uppercase'
+                        textTransform: 'uppercase',
+                        marginBottom: '6px'
                     }}>новый пароль</p>
-                    <CustomInput />
+                    <CustomInput value={newPass} onChange={(e) => {
+                        setNewPass(e)
+                    }} />
                 </div>
                 <div>
                     <p style={{
                         fontSize: '16px',
                         opacity: '0.6',
-                        textTransform: 'uppercase'
+                        textTransform: 'uppercase',
+                        marginBottom: '6px'
                     }}>Подтвердите новый пароль</p>
-                    <CustomInput />
+                    <CustomInput value={repeatNewPass} onChange={(e) => {
+                        setRepeatNewPass(e)
+                    }} />
                 </div>
-                <button style={{
+                <button onClick={() => {
+                    if (newPass.trim().length == 0) {
+                        alert('Пароль не может быть пустым')
+                        return
+                    }
+                    if (newPass != repeatNewPass) {
+                        alert('Пароли не совпадают')
+                        return
+                    }
+                    $api.post('/update-password', {
+                        "password": newPass
+                      })
+                      .then(e => {
+                        if (e.status == 200) {
+                            setNewPass('')
+                            setRepeatNewPass('')
+                            alert('Успешно')
+                        }
+                      })
+                }} style={{
                     width: '50%'
                 }} className="blue-button">Сменить пароль</button>
             </div>

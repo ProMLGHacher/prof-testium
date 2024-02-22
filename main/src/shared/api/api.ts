@@ -2,7 +2,7 @@ import axios, { AxiosInstance } from 'axios';
 import { RootState, store } from '../../store/store';
 import { logOut } from '../../slices/authSlice';
 
-const baseURL = 'http://83.147.245.210/api/';
+const baseURL = 'https://0085-79-126-115-45.ngrok-free.app/api/';
 
 export const $api: AxiosInstance = axios.create({
     baseURL,

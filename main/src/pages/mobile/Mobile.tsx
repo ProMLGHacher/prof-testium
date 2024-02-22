@@ -28,11 +28,11 @@ const Mobile = () => {
                     }}>1. Откройте приложение "Камера" на iPhone или Android</p>
                     <p>2. Наведите камеру на QR-код</p>
                     <div style={{
-                        marginTop: '10px'
+                        marginTop: '10px',
+                        fontWeight: '600',
+                        fontSize: '30px'
                     }} className="buttons">
-                        <img style={{
-                            cursor: 'pointer'
-                        }} width={'300px'} src="/gp.png" alt="" />
+                        Скоро.
                     </div>
                 </div>
             </div>

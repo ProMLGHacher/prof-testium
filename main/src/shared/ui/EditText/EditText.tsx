@@ -17,9 +17,13 @@ const EditText = (props: EditTextProps) => {
     return (
         <div onClick={() => {
             input.current?.focus()
+        }} style={{
+            gap: '18px'
         }} className={'input-wrapper ' + props.className}>
             <img className='leading' src={props.img} alt="" />
-            <input ref={input} className='input' value={props.value} placeholder={props.placeholder} onChange={(e) => {
+            <input style={{
+                color: 'white'
+            }} ref={input} className='input' value={props.value} placeholder={props.placeholder} onChange={(e) => {
                 if (props.onChange) {
                     props.onChange(e.target.value)
                 }

@@ -10,8 +10,6 @@ const Ot = () => {
 
     const [otdels, setOtdels] = useState<Otdel[]>([])
 
-    const { namee } = { namee: '67890' }
-
     const [name, setName] = useState('')
 
     const role = useAppSelector(selectRole)
@@ -26,6 +24,10 @@ const Ot = () => {
     }, [])
 
     const ok = async () => {
+        if (name.trim().length == 0) {
+            alert('Введите название отдела')
+            return
+        }
         await $api.post('/department', {
             name: name
         })

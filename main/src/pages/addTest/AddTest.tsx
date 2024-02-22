@@ -35,6 +35,7 @@ const AddTest = () => {
 
 
 
+
     const { id } = useParams()
 
     const [questions, setQuestions] = useState<Question[]>([
@@ -45,6 +46,17 @@ const AddTest = () => {
 
 
     const sub = () => {
+        if (name.trim().length == 0) {
+            alert('не все поля заполнены')
+            return
+        }
+        for (let index = 0; index < questions.length; index++) {
+            const el = questions[index];
+            if (el.question.trim().length == 0) {
+                alert('не все поля заполнены')
+                return
+            }
+        }
         $api.post('/test', {
             departmentId: id,
             name: name,
@@ -58,23 +70,26 @@ const AddTest = () => {
                 }
             })
         })
-        setName('')
-        setQuestions([
-            initQuestion()
-        ])
+        .then(e => {
+            if (e.status == 200) {
+                setName('')
+                setQuestions([
+                    initQuestion()
+                ])
+                alert('Успешно')
+            }
+        })
     }
-
-    console.log(questions);
-    
-
 
     const clck = useCallback((quesIndex: number) => {
         setQuestions(prev => {
             const ar = JSON.parse(JSON.stringify(prev))
-            ar[quesIndex].answers = ar[quesIndex].answers.concat(initAnswer())
+            ar[quesIndex].answers = ar[quesIndex].answers.concat(JSON.parse(JSON.stringify({
+                answer: ''
+            })))
             return ar
         })
-    }, [])
+    }, [setQuestions])
 
 
 
@@ -128,9 +143,10 @@ const AddTest = () => {
                                     }}>Вопрос</p>
                                     <CustomInput value={ques.question} onChange={(e) => {
                                         setQuestions(prev => {
-                                            const pr: Question[] = JSON.parse(JSON.stringify(prev))
-                                            pr[quesIndex].question = e
-                                            return pr
+                                            const chan = prev[quesIndex]
+                                            chan.question = e
+                                            prev[quesIndex] = chan
+                                            return prev
                                         })
                                     }} />
                                 </div>
@@ -157,7 +173,7 @@ const AddTest = () => {
                                                                 flex: '1'
                                                             }}>
                                                                 <AddButton onClick={() => clck(quesIndex)}>
-                                                                    <CustomInput  onChange={(e) => {
+                                                                    <CustomInput onChange={(e) => {
                                                                         setQuestions(prev => {
                                                                             prev[quesIndex].answers[index].answer = e
                                                                             return prev

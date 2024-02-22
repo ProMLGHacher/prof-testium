@@ -22,6 +22,8 @@ import PageTitle from '../shared/ui/PageTitle/PageTitle'
 import UserMain from '../pages/main/UserMain'
 import LessonsUser from '../pages/lessons/LessonsUser'
 import Test from '../pages/Test/Test'
+import TestConstructor from '../pages/addTest/AddTestTest'
+import RatingUser from '../pages/rating/RatingMobile'
 
 const router = createBrowserRouter([
     {
@@ -31,11 +33,11 @@ const router = createBrowserRouter([
     },
     {
         path: '/registration',
-        element: <Navigate to={'/'} />
+        element: <Navigate to={'/main'} />
     },
     {
         path: '/auth',
-        element: <Navigate to={'/'} />
+        element: <Navigate to={'/main'} />
     },
     {
         path: '/main',
@@ -87,7 +89,7 @@ const router = createBrowserRouter([
             },
             {
                 path: '/main/lessons/addTest/:id',
-                element: <AddTest />
+                element: <TestConstructor />
             }
         ]
     }
@@ -100,11 +102,11 @@ const manRouter = createBrowserRouter([
     },
     {
         path: '/registration',
-        element: <Navigate to={'/'} />
+        element: <Navigate to={'/main'} />
     },
     {
         path: '/auth',
-        element: <Navigate to={'/'} />
+        element: <Navigate to={'/main'} />
     },
     {
         path: '/main',
@@ -193,11 +195,11 @@ const authRouter = createBrowserRouter([
     },
     {
         path: '/registration',
-        element: <Register />
+        element: <Navigate to={'/main'} />
     },
     {
         path: '/auth',
-        element: <Auth />
+        element: <Navigate to={'/main'} />
     },
     {
         path: '/main',
@@ -229,7 +231,7 @@ const authRouter = createBrowserRouter([
             },
             {
                 path: '/main/rating',
-                element: <Rating />
+                element: <RatingUser />
             },
             {
                 path: '/main/rating/:id',

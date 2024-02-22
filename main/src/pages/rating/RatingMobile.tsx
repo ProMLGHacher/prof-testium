@@ -20,48 +20,48 @@ export type OtdelAnalytic = {
     userId: string
 }
 
-const Rating = () => {
+const RatingUser = () => {
 
     const navigate = useNavigate()
 
-    const [otdels, setOtdels] = useState<Otdel[]>([])
+    // const [otdels, setOtdels] = useState<Otdel[]>([])
     const [analytics, setAnalytics] = useState<OtdelAnalytic[]>([])
 
-    const [selected, setSetselected] = useState(0)
+    // const [selected, setSetselected] = useState(0)
 
-    const getOtdels = async () => {
-        const data = await $api.get<Otdel[]>('/departments')
-        setOtdels(data.data)
-    }
-
-    const getAnalytics = async () => {
-        const data = await $api.get<OtdelAnalytic[]>(`/tests/analytic/${otdels[selected].id}`)
-        setAnalytics(data.data)
-    }
+    // const getOtdels = async () => {
+    //     const data = await $api.get<Otdel[]>('/departments')
+    //     setOtdels(data.data)
+    // }
 
     // const getAnalytics = async () => {
-    //     const data = await $api.get<OtdelAnalytic[]>(`/tests/analytic`)
+    //     const data = await $api.get<OtdelAnalytic[]>(`/tests/analytic/${otdels[selected].id}`)
     //     setAnalytics(data.data)
     // }
 
-    // useEffect(() => {
-    //     getAnalytics()
-    // }, [])
+    const getAnalytics = async () => {
+        const data = await $api.get<OtdelAnalytic[]>(`/tests/analytic`)
+        setAnalytics(data.data)
+    }
 
     useEffect(() => {
-        getOtdels()
+        getAnalytics()
     }, [])
 
-    useEffect(() => {
-        if (otdels.length == 0) return
+    // useEffect(() => {
+    //     getOtdels()
+    // }, [])
 
-        getAnalytics()
-    }, [otdels, selected])
+    // useEffect(() => {
+    //     if (otdels.length == 0) return
+
+    //     getAnalytics()
+    // }, [otdels, selected])
 
     return (
         <div>
             <PageTitle text="Рейтинг" />
-            <div style={{
+            {/* <div style={{
                 display: 'flex',
                 overflowX: 'scroll',
                 gap: '20px',
@@ -87,7 +87,7 @@ const Rating = () => {
                         </div>
                     })
                 }
-            </div>
+            </div> */}
             <div>
                 {
                     analytics.map((elem) => {
@@ -111,4 +111,4 @@ const Rating = () => {
     )
 }
 
-export default Rating
+export default RatingUser

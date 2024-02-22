@@ -23,30 +23,38 @@ const Header = (props: HeaderProps) => {
             className='header'
         >
             <div className="header-wrapper container">
-                <img src={logo} alt="kjnjx" />
-                {
-                    token ? <button onClick={() => {
-                        navigate('/main')
-                    }} className='transparent-button'>Личный кабинет</button> : <button onClick={() => {
-                        navigate('/registration')
-                    }} className='transparent-button'>Войти в систему</button>
-                }
-            </div>
-            <div className="divider" />
-            <div className="header-wrapper container">
-                <nav className='nav'>
-                    <a href={'/#1'}>Почему мы?</a>
-                    <a href={'/#2'}>О нас</a>
-                    <a href={'/#3'}>Партнеры и организации</a>
-                </nav>
                 <div style={{
                     display: 'flex',
-                    gap: '20px',
-                    alignItems: 'center'
+                    alignItems: 'center',
+                    gap: '80px'
                 }}>
-                    <a style={{
-                        color: 'white'
-                    }} className='phone' href="tel:+70000000000">+ 7 (000) 000 00 00</a>
+                    <img onClick={() => {
+                        navigate('/')
+                    }} src={logo}  alt="kjnjx" style={{
+                        marginRight: '20px',
+                        cursor: 'pointer'
+                    }} />
+                    <a className='link' href={'/#2'}>О нас</a>
+                    <Link className='link' to={'/'}>Тарифы</Link>
+                    <Link className='link' to={'/'}>Контакты</Link>
+                </div>
+                <div style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '20px'
+                }}>
+                    {
+                        Boolean(!token) && <button onClick={() => {
+                            navigate('/registration')
+                        }} className='white-button btn'>Получить бесплатно</button>
+                    }
+                    {
+                        token ? <button onClick={() => {
+                            navigate('/main/rating')
+                        }} className='transparent-button'>Личный кабинет</button> : <button onClick={() => {
+                            navigate('/auth')
+                        }} className='transparent-button'>Войти в систему</button>
+                    }
                 </div>
             </div>
             <div className="divider" />

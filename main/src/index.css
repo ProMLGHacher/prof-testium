@@ -18,7 +18,7 @@
 
 .transparent-button-black {
   padding: 16px 20px;
-  box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.15);
+  box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.35);
   border: none;
   border-radius: 0px;
   background-color: transparent;
@@ -45,7 +45,7 @@
 }
 
 .container {
-  width: 90%;
-  max-width: 1920px;
+  width: 70%;
+  max-width: 1440px;
   margin-inline: auto;
 }

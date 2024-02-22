@@ -7,6 +7,7 @@ import AddButton from "../../shared/ui/AddButton/AddButton"
 import { useEffect, useState } from "react"
 import { $api } from "../../shared/api/api"
 import { Otdel } from "../rating/Rating"
+import { Link } from "react-router-dom"
 
 type Lesson = {
     id: string,
@@ -57,11 +58,12 @@ const Lessons = () => {
 
     return (
         <div>
-            <PageTitle text="Лекции" />
+            <PageTitle text="Обучение" />
             <div style={{
                 display: 'flex',
                 overflowX: 'scroll',
                 gap: '20px',
+                marginBottom: '30px'
             }}>
                 {
                     otdels.map((el, index) => {
@@ -85,6 +87,7 @@ const Lessons = () => {
                     })
                 }
             </div>
+            <PageTitle text="Лекции" />
             <div style={{
                 display: 'flex',
                 flexDirection: 'column',
@@ -149,7 +152,7 @@ const Lessons = () => {
                 {
                     tests.map((elem, index) => {
                         return index === tests.length - 1 ? <AddButton to={`/main/lessons/addTest/${otdels[selected].id}`}>
-                            <div style={{
+                            <Link to={'/main/lessons/' + elem.id} style={{
                                 padding: '14px',
                                 boxShadow: '0px 0px 4px 0px rgba(0, 0, 0, 0.5)'
                             }}>
@@ -161,19 +164,19 @@ const Lessons = () => {
                                     <img src={warn} alt="" />
                                     <p>{elem.name}</p>
                                 </div>
-                            </div>
+                            </Link>
                         </AddButton> : <div style={{
                             padding: '14px',
                             boxShadow: '0px 0px 4px 0px rgba(0, 0, 0, 0.5)'
                         }}>
-                            <div style={{
+                            <Link to={'/main/lessons/' + elem.id} style={{
                                 display: 'flex',
                                 alignItems: 'center',
                                 gap: '10px'
                             }}>
                                 <img src={warn} alt="" />
                                 <p>{elem.name}</p>
-                            </div>
+                            </Link>
                         </div>
                     })
                 }

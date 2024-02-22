@@ -4,7 +4,8 @@ const PageTitle = ({text} : {text: string}) => {
     <div style={{
         display: 'flex',
         alignItems: 'center',
-        gap: '20px'
+        gap: '20px',
+        marginBottom: '30px'
     }}>
         <h3 className='tit' style={{
             whiteSpace: 'nowrap'

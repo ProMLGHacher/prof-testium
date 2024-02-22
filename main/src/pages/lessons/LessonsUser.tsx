@@ -15,8 +15,11 @@ type Lesson = {
 }
 
 type Test = {
-    id: string,
-    name: string
+    "id": string,
+    "testName": string,
+    "averageCountPoints": number,
+    "maxCountPointsByTest": number,
+    "isCompleted": boolean
 }
 
 const LessonsUser = () => {
@@ -39,7 +42,7 @@ const LessonsUser = () => {
         setLessons(data.data)
     }
     const getTests = async () => {
-        const data = await $api.get<Test[]>(`/tests/`)
+        const data = await $api.get<Test[]>(`/tests/analytics`)
         setTests(data.data)
     }
 
@@ -64,6 +67,9 @@ const LessonsUser = () => {
                 gap: '20px',
                 marginBlock: '20px'
             }}>
+                {
+                    Boolean(!lessons.length) && <h3>Пока нет лекций</h3>
+                }
                 {
                     lessons.map((elem, index) => {
                         console.log(elem);
@@ -114,6 +120,9 @@ const LessonsUser = () => {
                 marginBlock: '20px'
             }}>
                 {
+                    Boolean(!tests.length) && <h3>Пока нет тестов</h3>
+                }
+                {
                     tests.map((elem, index) => {
                         console.log(elem);
                         
@@ -121,15 +130,15 @@ const LessonsUser = () => {
                             padding: '14px',
                             boxShadow: '0px 0px 4px 0px rgba(0, 0, 0, 0.5)'
                         }}>
-                            <Link to={'/main/lessons/' + elem.id} style={{
+                            <Link to={elem.isCompleted ? '' : '/main/lessons/' + elem.id} style={{
                                 textDecoration: 'none',
                                 color: 'black',
                                 display: 'flex',
                                 alignItems: 'center',
                                 gap: '10px'
                             }}>
-                                <img src={warn} alt="" />
-                                <p>{elem.name}</p>
+                                <img src={elem.isCompleted ? '/completed.png' : warn} width={40} height={40} alt="" />
+                                <p>{elem.testName}</p>
                             </Link>
                         </div>
                     })

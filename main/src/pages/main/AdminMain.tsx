@@ -43,13 +43,6 @@ const AdminMain = () => {
                             }>
                                 <h4>Сменить пароль</h4>
                             </NavLink>
-                            <NavLink to={'/main/profile/notifications'} className={({ isActive }) =>
-                                isActive
-                                    ? "nav-drop active"
-                                    : "nav-drop"
-                            }>
-                                <h4>Уведомления</h4>
-                            </NavLink>
                             <div onClick={() => {
                                 dispatch(logOut())
                             }} className='nav-drop'>

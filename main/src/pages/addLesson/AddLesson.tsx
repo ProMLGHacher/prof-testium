@@ -21,8 +21,14 @@ const AddLesson = () => {
     }
 
     const sub = async () => {
-        if (!file) return
-        if (name.trim().length === 0) return
+        if (!file) {
+            alert('Файл не прикреплен')
+            return
+        }
+        if (name.trim().length === 0) {
+            alert('название лекции не должно быть пустым')
+            return
+        }
         const data = await $api.post<
             {
                 id: string,
@@ -32,11 +38,19 @@ const AddLesson = () => {
         >('/lectern', {
             name: name
         })
-
         var formData = new FormData();
         formData.append("image", file);
         await $api.post(`/upload/lectern/${data.data.id}`, formData)
-        alert('Успешно')
+            .then(e => {
+                if (e.status != 200) {
+                    alert('Чтото не то')
+                } else {
+                    alert('Успешно')
+                }
+                setFilename('')
+                setName('')
+                setFile(undefined)
+            })
     }
 
     return (

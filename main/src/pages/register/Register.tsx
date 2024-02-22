@@ -34,8 +34,15 @@ function Register() {
           <EditText value={password} onChange={(e) => {
             setPassword(e)
           }} className='field' img={lock} placeholder={'Пароль'} />
-          <div className='buttons'>
-            <button onClick={() => {
+          <div style={{
+            flexDirection: 'column',
+            gap: '6px'
+          }} className='buttons'>
+            <button style={{
+              width:'50%'
+            }} onClick={() => {
+              console.log('ХУЙХУЙХУ');
+              
               dispatch(regThunk({
                 name: name,
                 phoneAdmin: phone,
@@ -44,7 +51,7 @@ function Register() {
             }} className='white-button btn'>Зарегистрироваться!</button>
             <div className='links'>
               <Link className='link' to={'/auth'} >У меня есть аккаунт</Link>
-              <Link className='link' to={'/'} >Я не помню пароль</Link>
+              {/* <Link className='link' to={'/'} >Я не помню пароль</Link> */}
             </div>
           </div>
         </div>
