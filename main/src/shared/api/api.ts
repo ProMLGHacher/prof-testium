@@ -2,7 +2,7 @@ import axios, { AxiosInstance } from 'axios';
 import { RootState, store } from '../../store/store';
 import { logOut } from '../../slices/authSlice';
 
-const baseURL = 'https://0085-79-126-115-45.ngrok-free.app/api/';
+const baseURL = 'http://83.147.245.210/api/';
 
 export const $api: AxiosInstance = axios.create({
     baseURL,
@@ -25,8 +25,6 @@ $api.interceptors.request.use(async (config) => {
 $api.interceptors.response.use(
     (response) => response,
     async (error) => {
-        const originalRequest = error.config;
-
         if (error.response.status === 401) {
             store.dispatch(logOut())
         }

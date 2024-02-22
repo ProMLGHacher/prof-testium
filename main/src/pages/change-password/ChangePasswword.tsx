@@ -22,7 +22,7 @@ const ChangePasswword = () => {
                         opacity: '0.6',
                         textTransform: 'uppercase',
                         marginBottom: '6px'
-                    }}>новый пароль</p>
+                    }}>Старый пароль</p>
                     <CustomInput value={newPass} onChange={(e) => {
                         setNewPass(e)
                     }} />
@@ -33,7 +33,7 @@ const ChangePasswword = () => {
                         opacity: '0.6',
                         textTransform: 'uppercase',
                         marginBottom: '6px'
-                    }}>Подтвердите новый пароль</p>
+                    }}>Новый пароль</p>
                     <CustomInput value={repeatNewPass} onChange={(e) => {
                         setRepeatNewPass(e)
                     }} />
@@ -43,12 +43,13 @@ const ChangePasswword = () => {
                         alert('Пароль не может быть пустым')
                         return
                     }
-                    if (newPass != repeatNewPass) {
-                        alert('Пароли не совпадают')
+                    if (repeatNewPass.trim().length == 0) {
+                        alert('Пароль не может быть пустым')
                         return
                     }
                     $api.post('/update-password', {
-                        "password": newPass
+                        oldPassword: newPass,
+                        "password": repeatNewPass
                       })
                       .then(e => {
                         if (e.status == 200) {
@@ -56,6 +57,9 @@ const ChangePasswword = () => {
                             setRepeatNewPass('')
                             alert('Успешно')
                         }
+                      })
+                      .catch(e => {
+                        alert('Неверные данные')
                       })
                 }} style={{
                     width: '50%'

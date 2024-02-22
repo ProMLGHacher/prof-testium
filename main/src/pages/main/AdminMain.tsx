@@ -70,6 +70,14 @@ const AdminMain = () => {
                         isActive
                             ? "nav-button active"
                             : "nav-button"
+                    } to={'/main/mylessons'}>
+                        <h4>Мое обучение</h4>
+                        <img src={activity} alt="" />
+                    </NavLink>
+                    <NavLink className={({ isActive }) =>
+                        isActive
+                            ? "nav-button active"
+                            : "nav-button"
                     } to={'/main/emp'}>
                         <h4>Сотрудники</h4>
                         <img src={profile} alt="" />
@@ -81,14 +89,6 @@ const AdminMain = () => {
                     } to={'/main/departments'}>
                         <h4>Отделы</h4>
                         <img src={profile} alt="" />
-                    </NavLink>
-                    <NavLink className={({ isActive }) =>
-                        isActive
-                            ? "nav-button active"
-                            : "nav-button"
-                    } to={'/main/mobile'}>
-                        <h4>Мобильная версия</h4>
-                        <img src={calling} alt="" />
                     </NavLink>
                 </div >
                 <div style={{

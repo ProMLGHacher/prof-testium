@@ -84,13 +84,21 @@ const router = createBrowserRouter([
                 element: <Lessons />
             },
             {
+                path: '/main/mylessons',
+                element: <LessonsUser />
+            },
+            {
                 path: '/main/lessons/add',
                 element: <AddLesson />
             },
             {
                 path: '/main/lessons/addTest/:id',
                 element: <TestConstructor />
-            }
+            },
+            {
+                path: '/main/lessons',
+                element: <LessonsUser />
+            },
         ]
     }
 ])
