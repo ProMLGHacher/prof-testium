@@ -51,7 +51,7 @@ const LessonsUser = () => {
         getOtdels()
     }, [])
 
-    
+
 
     useEffect(() => {
         if (otdels.length == 0) return
@@ -73,7 +73,7 @@ const LessonsUser = () => {
                 {
                     lessons.map((elem, index) => {
                         console.log(elem);
-                        
+
                         return index === lessons.length - 1 ? <div style={{
                             display: 'flex',
                             alignItems: 'center',
@@ -124,8 +124,6 @@ const LessonsUser = () => {
                 }
                 {
                     tests.map((elem, index) => {
-                        console.log(elem);
-                        
                         return <div style={{
                             padding: '14px',
                             boxShadow: '0px 0px 4px 0px rgba(0, 0, 0, 0.5)'

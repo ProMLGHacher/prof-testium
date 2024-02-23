@@ -79,7 +79,7 @@ const TestComponent: React.FC<{ test: Test }> = ({ test }) => {
           <button style={{
             minWidth: '240px',
           }} className='transparent-button-black' onClick={() => {
-            navigate('/main/lessons')
+            navigate('/main/mylessons')
           }}>
             На главную
           </button>

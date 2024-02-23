@@ -49,7 +49,7 @@ const Lessons = () => {
         getOtdels()
     }, [])
 
-    
+
 
     useEffect(() => {
         if (otdels.length == 0) return
@@ -152,31 +152,25 @@ const Lessons = () => {
                 {
                     tests.map((elem, index) => {
                         return index === tests.length - 1 ? <AddButton to={`/main/lessons/addTest/${otdels[selected].id}`}>
-                            <Link to={'/main/lessons/' + elem.id} style={{
+                            <div style={{
                                 padding: '14px',
-                                boxShadow: '0px 0px 4px 0px rgba(0, 0, 0, 0.5)'
-                            }}>
-                                <div style={{
-                                    display: 'flex',
-                                    alignItems: 'center',
-                                    gap: '10px'
-                                }}>
-                                    <img src={warn} alt="" />
-                                    <p>{elem.name}</p>
-                                </div>
-                            </Link>
-                        </AddButton> : <div style={{
-                            padding: '14px',
-                            boxShadow: '0px 0px 4px 0px rgba(0, 0, 0, 0.5)'
-                        }}>
-                            <Link to={'/main/lessons/' + elem.id} style={{
+                                boxShadow: '0px 0px 4px 0px rgba(0, 0, 0, 0.5)',
                                 display: 'flex',
                                 alignItems: 'center',
                                 gap: '10px'
                             }}>
-                                <img src={warn} alt="" />
+                                <img src={paper} width={40} height={40} alt="" />
                                 <p>{elem.name}</p>
-                            </Link>
+                            </div>
+                        </AddButton> : <div style={{
+                            padding: '14px',
+                            boxShadow: '0px 0px 4px 0px rgba(0, 0, 0, 0.5)',
+                            display: 'flex',
+                            alignItems: 'center',
+                            gap: '10px'
+                        }}>
+                            <img src={paper} width={40} height={40} alt="" />
+                            <p>{elem.name}</p>
                         </div>
                     })
                 }

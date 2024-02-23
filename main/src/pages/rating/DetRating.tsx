@@ -9,6 +9,7 @@ type Ok = {
     averageCountPoints: number,
     maxCountPointsByTest: number,
     isCompleted: boolean,
+    lastCountPoints: number
   }
 
 const DetRating = () => {
@@ -43,7 +44,7 @@ const DetRating = () => {
                                 marginBlock: '20px',
                             }}>
                                 <p>{elem.testName}</p>
-                                <p>{elem.averageCountPoints} из {elem.maxCountPointsByTest}</p>
+                                <p>{elem.lastCountPoints} из {elem.maxCountPointsByTest}</p>
                             </div>
                     })
                 }

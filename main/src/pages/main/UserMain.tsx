@@ -66,14 +66,6 @@ const UserMain = () => {
                         <h4>Обучение</h4>
                         <img src={activity} alt="" />
                     </NavLink>
-                    <NavLink className={({ isActive }) =>
-                        isActive
-                            ? "nav-button active"
-                            : "nav-button"
-                    } to={'/main/mobile'}>
-                        <h4>Мобильная версия</h4>
-                        <img src={calling} alt="" />
-                    </NavLink>
                 </div >
                 <div style={{
                     flex: '1'

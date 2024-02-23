@@ -24,6 +24,7 @@ import LessonsUser from '../pages/lessons/LessonsUser'
 import Test from '../pages/Test/Test'
 import TestConstructor from '../pages/addTest/AddTestTest'
 import RatingUser from '../pages/rating/RatingMobile'
+import ChangeUser from '../pages/changeUser/ChangeUser'
 
 const router = createBrowserRouter([
     {
@@ -50,6 +51,10 @@ const router = createBrowserRouter([
             {
                 path: '/main/profile',
                 element: <Profile />
+            },
+            {
+                path: '/main/changeUser/:id',
+                element: <ChangeUser />
             },
             {
                 path: '/main/emp',
@@ -82,6 +87,10 @@ const router = createBrowserRouter([
             {
                 path: '/main/lessons',
                 element: <Lessons />
+            },
+            {
+                path: '/main/lessons/:id',
+                element: <Test />
             },
             {
                 path: '/main/mylessons',
