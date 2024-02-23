@@ -35,8 +35,7 @@ const Header = (props: HeaderProps) => {
                         cursor: 'pointer'
                     }} />
                     <a className='link' href={'/#2'}>О нас</a>
-                    <Link className='link' to={'/'}>Тарифы</Link>
-                    <Link className='link' to={'/'}>Контакты</Link>
+                    <a className='link' href={'/#3'}>Тарифы</a>
                 </div>
                 <div style={{
                     display: 'flex',

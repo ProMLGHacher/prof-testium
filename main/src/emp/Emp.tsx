@@ -105,15 +105,22 @@ const Emp = () => {
                             alignItems: 'center'
                         }}>
                                 <p>{el.fullname}</p>
-                                <button onClick={() => {
+                                <button style={{
+                                    zIndex: '1',
+                                    backgroundColor: 'transparent',
+                                    border: 'none',
+                                    padding: '0',
+                                    cursor: 'pointer'
+                                }} onClick={() => {
                                     $api.delete('/remove-employer/' + el.id)
                                         .then(e => {
                                             get()
                                         })
-                                }}>del</button>
+                                }}> <img src="/exit.svg" alt="" /> </button>
                             </div>
                         </Link> : [UserRole.Admin, UserRole.Manager].includes(role!) ? <AddButton to={'/main/emp/add/' + otdels[selected].id}>
                             <Link style={{
+                                pointerEvents: 'fill',
                                 textDecoration: 'none',
                                 color: 'black'
                             }} to={'/main/changeUser/' + el.id}>
@@ -125,12 +132,20 @@ const Emp = () => {
                                     alignItems: 'center'
                                 }}>
                                     <p>{el.fullname}</p>
-                                    <button onClick={() => {
-                                        $api.delete('/remove-employer/' + el.id)
-                                            .then(e => {
-                                                get()
-                                            })
-                                    }}>del</button>
+                                    <Link to={''}>
+                                        <button style={{
+                                            zIndex: '1',
+                                            backgroundColor: 'transparent',
+                                            border: 'none',
+                                            padding: '0',
+                                            cursor: 'pointer',
+                                        }} onClick={() => {
+                                            $api.delete('/remove-employer/' + el.id)
+                                                .then(e => {
+                                                    get()
+                                                })
+                                        }}> <img src="/exit.svg" alt="" /> </button>
+                                    </Link>
                                 </div>
                             </Link>
                         </AddButton> : <div style={{

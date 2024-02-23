@@ -25,8 +25,9 @@ import Test from '../pages/Test/Test'
 import TestConstructor from '../pages/addTest/AddTestTest'
 import RatingUser from '../pages/rating/RatingMobile'
 import ChangeUser from '../pages/changeUser/ChangeUser'
+import ManagerMain from '../pages/main/ManagerMain'
 
-const router = createBrowserRouter([
+const adminRouter = createBrowserRouter([
     {
         path: '/',
         element: <Landing />,
@@ -111,7 +112,7 @@ const router = createBrowserRouter([
         ]
     }
 ])
-const manRouter = createBrowserRouter([
+const managerRouter = createBrowserRouter([
     {
         path: '/',
         element: <Landing />,
@@ -127,7 +128,7 @@ const manRouter = createBrowserRouter([
     },
     {
         path: '/main',
-        element: <AdminMain />,
+        element: <ManagerMain />,
         children: [
             {
                 path: '/main/mobile',
@@ -138,12 +139,16 @@ const manRouter = createBrowserRouter([
                 element: <Profile />
             },
             {
+                path: '/main/changeUser/:id',
+                element: <ChangeUser />
+            },
+            {
                 path: '/main/emp',
                 element: <Emp />
             },
             {
                 path: '/main/emp/add/:id',
-                element: <PageTitle text='Нет доступа' />
+                element: <AddEmp />
             },
             {
                 path: '/main/departments',
@@ -170,13 +175,25 @@ const manRouter = createBrowserRouter([
                 element: <Lessons />
             },
             {
+                path: '/main/lessons/:id',
+                element: <Test />
+            },
+            {
+                path: '/main/mylessons',
+                element: <LessonsUser />
+            },
+            {
                 path: '/main/lessons/add',
-                element: <PageTitle text='Нет доступа' />
+                element: <AddLesson />
             },
             {
                 path: '/main/lessons/addTest/:id',
-                element: <PageTitle text='Нет доступа' />
-            }
+                element: <TestConstructor />
+            },
+            {
+                path: '/main/lessons',
+                element: <LessonsUser />
+            },
         ]
     }
 ])
@@ -200,7 +217,7 @@ const nonAuthRouter = createBrowserRouter([
         element: <Auth />
     }
 ])
-const authRouter = createBrowserRouter([
+const empRouter = createBrowserRouter([
     {
         path: '/',
         element: <Landing />,
@@ -286,9 +303,9 @@ const Router = () => {
     return (
         token ?
             role == UserRole.Admin ?
-                <RouterProvider router={router} /> : role == UserRole.HrManager ?
-                    <RouterProvider router={router} /> : role == UserRole.Manager ?
-                        <RouterProvider router={manRouter} /> : <RouterProvider router={authRouter} />
+                <RouterProvider router={adminRouter} /> : role == UserRole.HrManager ?
+                    <RouterProvider router={adminRouter} /> : role == UserRole.Manager ?
+                        <RouterProvider router={managerRouter} /> : <RouterProvider router={empRouter} />
             : <RouterProvider router={nonAuthRouter} />
     )
 }

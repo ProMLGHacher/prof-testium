@@ -10,8 +10,6 @@ import { selectToken } from '../../slices/authSlice'
 import ScrollableAnchor from 'react-scrollable-anchor'
 
 const Landing = () => {
-
-    const token = useAppSelector(selectToken)
     const navigate = useNavigate()
 
     return (
@@ -76,8 +74,8 @@ const Landing = () => {
                     <p className="advantage-subtitle">Повышайте эффективность обучения сотрудников практическим навыкам за счет VR-симуляций.</p>
                 </div>
             </section>
-            <ScrollableAnchor id='#2'>
-                <section id={'2'} className='container about'>
+            <ScrollableAnchor id='2'>
+                <section className='container about'>
                     <div className='about-item'>
                         <img className='about-logo' src={logo} alt="" />
                         <p style={{
@@ -91,6 +89,33 @@ const Landing = () => {
                         </p>
                     </div>
                     <img className='about-item' src={about} alt="" />
+                </section>
+            </ScrollableAnchor>
+            <ScrollableAnchor id='3'>
+                <section style={{
+                    marginTop: '150px'
+                }} className='tarifi container'>
+                    <div className='tarif'>
+                        <h1>
+                            Тариф «Начальный»
+                        </h1>
+                        <p>Подключение к платформе</p>
+                        <h5>8 990 руб/мес</h5>
+                    </div>
+                    <div className='tarif'>
+                        <h1>
+                            Тариф «Стандартный»
+                        </h1>
+                        <p>Расширенная аналитика,<br />корпоративный чат</p>
+                        <h5>15 990 руб/мес</h5>
+                    </div>
+                    <div className='tarif'>
+                        <h1>
+                            Тариф «Профессиональный»
+                        </h1>
+                        <p>Возможность подключать<br />VR инструменты.</p>
+                        <h5>30 990 руб/мес</h5>
+                    </div>
                 </section>
             </ScrollableAnchor>
             <footer className='footer'>

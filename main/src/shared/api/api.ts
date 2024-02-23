@@ -2,7 +2,7 @@ import axios, { AxiosInstance } from 'axios';
 import { RootState, store } from '../../store/store';
 import { logOut } from '../../slices/authSlice';
 
-const baseURL = 'http://localhost:8091/api/';
+const baseURL = 'http://83.147.245.210:8080/api/';
 
 export const $api: AxiosInstance = axios.create({
     baseURL,
