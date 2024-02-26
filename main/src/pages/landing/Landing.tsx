@@ -88,7 +88,10 @@ const Landing = () => {
                             Наша платформа предоставляет возможность создания собственных порталов для обучения и тестирования сотрудников. Это упрощает организацию обучения, контроль уровня знаний и повышение качества работы сотрудников.
                         </p>
                     </div>
-                    <img className='about-item' src={about} alt="" />
+                    <img className='about-item' src={'/img.jpg'} style={{
+                        aspectRatio: '0.99:1',
+                        width: '200px'
+                    }} alt="" />
                 </section>
             </ScrollableAnchor>
             <ScrollableAnchor id='3'>
