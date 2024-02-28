@@ -244,6 +244,10 @@ const empRouter = createBrowserRouter([
                 element: <Mobile />
             },
             {
+                path: '/main/mylessons',
+                element: <LessonsUser />
+            },
+            {
                 path: '/main/profile',
                 element: <Profile />
             },

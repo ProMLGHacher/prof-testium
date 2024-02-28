@@ -7,6 +7,8 @@ import { useEffect, useState } from "react"
 import { $api } from "../../shared/api/api"
 import { Otdel } from "../rating/Rating"
 import { Link } from "react-router-dom"
+import { useAppSelector } from "../../store/hooks"
+import { UserRole } from "../../slices/authSlice"
 
 type Lesson = {
     id: string,
@@ -19,10 +21,13 @@ type Test = {
     "testName": string,
     "averageCountPoints": number,
     "maxCountPointsByTest": number,
-    "isCompleted": boolean
+    "isCompleted": boolean,
+    "lastCountPoints": number
 }
 
 const LessonsUser = () => {
+
+    const role = useAppSelector(state => state.auth.role)
 
     const [lessons, setLessons] = useState<Lesson[]>([])
     const [tests, setTests] = useState<Test[]>([])
@@ -43,6 +48,9 @@ const LessonsUser = () => {
     }
     const getTests = async () => {
         const data = await $api.get<Test[]>(`/tests/analytics`)
+        
+        console.log(data.data);
+        
         setTests(data.data)
     }
 
@@ -128,7 +136,7 @@ const LessonsUser = () => {
                             padding: '14px',
                             boxShadow: '0px 0px 4px 0px rgba(0, 0, 0, 0.5)'
                         }}>
-                            <Link to={elem.isCompleted ? '' : '/main/lessons/' + elem.id} style={{
+                            <Link to={[UserRole.Admin, UserRole.Manager].includes(role!) ? '/main/lessons/' + elem.id : elem.isCompleted ? '' : '/main/lessons/' + elem.id} style={{
                                 textDecoration: 'none',
                                 color: 'black',
                                 display: 'flex',

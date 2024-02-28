@@ -62,8 +62,8 @@ const UserMain = () => {
                         isActive
                             ? "nav-button active"
                             : "nav-button"
-                    } to={'/main/lessons'}>
-                        <h4>Обучение</h4>
+                    } to={'/main/mylessons'}>
+                        <h4>Мое обучение</h4>
                         <img src={activity} alt="" />
                     </NavLink>
                 </div >
