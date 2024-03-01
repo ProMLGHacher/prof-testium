@@ -41,37 +41,37 @@ const Landing = () => {
                     <div className='top'>
                         <p className='number'>01</p>
                     </div>
-                    <p className="advantage-subtitle">Проводите анализ текущих процессов для выявления узких мест, излишних шагов и потенциальных улучшений.</p>
+                    <p className="advantage-subtitle">Повышайте эффективность обучения сотрудников практическим навыкам за счет VR-симуляций.</p>
                 </div>
                 <div className='advantage'>
                     <div className='top'>
                         <p className='number'>02</p>
                     </div>
-                    <p className="advantage-subtitle">Рейтинги для оценки производительности и определения областей, требующих дальнейшего развития.</p>
+                    <p className="advantage-subtitle">Создавайте и настраивайте корпоративные тесты для сотрудников через наш программный инструмент.</p>
                 </div>
                 <div className='advantage'>
                     <div className='top'>
                         <p className='number'>03</p>
                     </div>
-                    <p className="advantage-subtitle">Определяйте основные функциональные области и департаменты, необходимые для работы вашей организации.</p>
+                    <p className="advantage-subtitle">Персонализируйте обучающие планы для каждого сотрудника, учитывающие их уровень знаний и потребности.</p>
                 </div>
                 <div className='advantage'>
                     <div className='top'>
                         <p className='number'>04</p>
                     </div>
-                    <p className="advantage-subtitle">Быстро и эффективно получайте общее представление о содержании и сути материалов.</p>
+                    <p className="advantage-subtitle">Выстраивайте собственную программу обучения для целых отделов, учитывая специфику каждого из них.</p>
                 </div>
                 <div className='advantage'>
                     <div className='top'>
                         <p className='number'>05</p>
                     </div>
-                    <p className="advantage-subtitle">Создавайте и настраивайте корпоративные тесты для сотрудников через наш программный инструмент.</p>
+                    <p className="advantage-subtitle">Оценивайте уровень знаний и навыков сотрудников, выявляйте области, требующие дополнительного обучения.</p>
                 </div>
                 <div className='advantage'>
                     <div className='top'>
                         <p className='number'>06</p>
                     </div>
-                    <p className="advantage-subtitle">Повышайте эффективность обучения сотрудников практическим навыкам за счет VR-симуляций.</p>
+                    <p className="advantage-subtitle">Обучайтесь из любой точки мира через наше мобильное приложение.</p>
                 </div>
             </section>
             <ScrollableAnchor id='2'>
