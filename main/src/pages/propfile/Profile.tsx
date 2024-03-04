@@ -3,6 +3,8 @@ import CustomInput from '../../shared/ui/CustomInput/CustomInput'
 import PageTitle from '../../shared/ui/PageTitle/PageTitle'
 import './Profile.css'
 import { $api } from '../../shared/api/api'
+import { useAppDispatch } from '../../store/hooks'
+import { logOut } from '../../slices/authSlice'
 
 type User = {
     phone: string,
@@ -13,6 +15,8 @@ type User = {
 }
 
 const Profile = () => {
+
+    const dispatch = useAppDispatch()
 
     const [user, setUser] = useState<User>({
         email: '',
@@ -72,26 +76,40 @@ const Profile = () => {
                     <CustomInput value={user?.role == 'Admin' ? 'Админ' : user?.role == 'Employee' ? 'Сотрудник' : user?.role == 'HrManager' ? 'HR' : 'Менеджер'} />
                 </div>
             </div>
-            <button style={{
-                minWidth: '240px',
-                marginTop: '20px'
-            }} className='blue-button' onClick={() => {
-                if (user.fullname.length == 0) {
-                    alert('ФИО не заполнено')
-                    return
-                }
-                $api.put('/profile', {
-                    "email": user.email,
-                    "fullname": user.fullname
-                })
-                    .then(e => {
-                        if (e.status == 200) {
-                            alert('Сохранено')
-                        }
-                    })
+            <div style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: '20px'
             }}>
-                Сохранить
-            </button>
+                <button style={{
+                    minWidth: '240px',
+                    marginTop: '20px'
+                }} className='blue-button' onClick={() => {
+                    if (user.fullname.length == 0) {
+                        alert('ФИО не заполнено')
+                        return
+                    }
+                    $api.put('/profile', {
+                        "email": user.email,
+                        "fullname": user.fullname
+                    })
+                        .then(e => {
+                            if (e.status == 200) {
+                                alert('Сохранено')
+                            }
+                        })
+                }}>
+                    Сохранить
+                </button>
+                <button style={{
+                    minWidth: '240px',
+                    marginTop: '20px'
+                }} className='blue-button' onClick={() => {
+                    dispatch(logOut())
+                }}>
+                    Выйти
+                </button>
+            </div>
         </div>
     )
 }

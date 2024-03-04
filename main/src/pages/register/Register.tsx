@@ -38,21 +38,30 @@ function Register() {
             flexDirection: 'column',
             gap: '6px'
           }} className='buttons'>
-            <button style={{
-              width:'50%'
-            }} onClick={() => {
-              console.log('ХУЙХУЙХУ');
-              
-              dispatch(regThunk({
-                name: name,
-                phoneAdmin: phone,
-                passwordAdmin: password
-              }))
-            }} className='white-button btn'>Зарегистрироваться!</button>
+            <div style={{
+              display: 'flex',
+              flexDirection: 'column'
+            }}>
+              <button style={{
+                width: '50%'
+              }} onClick={() => {
+                dispatch(regThunk({
+                  name: name,
+                  phoneAdmin: phone,
+                  passwordAdmin: password
+                }))
+              }} className='white-button btn'>Зарегистрироваться!</button>
+            </div>
             <div className='links'>
               <Link className='link' to={'/auth'} >У меня есть аккаунт</Link>
               {/* <Link className='link' to={'/'} >Я не помню пароль</Link> */}
             </div>
+            <Link to={'/conf.pdf'} style={{
+              color: 'white',
+              textDecoration: 'underline',
+              fontSize: '12px',
+              width: '70%'
+            }}>Нажимая на кнопку регистрации вы соглашаетесь с <span>политикой конфеденциальности</span>!</Link>
           </div>
         </div>
         <img className='welcome-img' src={welcome} alt="" />
