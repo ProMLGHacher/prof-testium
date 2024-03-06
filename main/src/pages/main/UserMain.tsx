@@ -1,11 +1,9 @@
-import { Link, NavLink, Outlet } from 'react-router-dom'
+import { NavLink, Outlet } from 'react-router-dom'
 import './UserMain.css'
 
 import activity from '../../assets/Activity.svg'
-import calling from '../../assets/Calling.svg'
 import chart from '../../assets/Chart.svg'
 import profile from '../../assets/Profile.svg'
-import chat from '../../assets/Chat.svg'
 import Header from '../../shared/ui/header/Header'
 import { useAppDispatch } from '../../store/hooks'
 import { logOut } from '../../slices/authSlice'

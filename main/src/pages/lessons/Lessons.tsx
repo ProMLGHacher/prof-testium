@@ -1,13 +1,10 @@
 import PageTitle from "../../shared/ui/PageTitle/PageTitle"
 import paper from '../../assets/paper.svg'
-import warn from '../../assets/warn.svg'
-import suc from '../../assets/suc.svg'
 import download from '../../assets/Download.svg'
 import AddButton from "../../shared/ui/AddButton/AddButton"
 import { useEffect, useState } from "react"
 import { $api } from "../../shared/api/api"
 import { Otdel } from "../rating/Rating"
-import { Link } from "react-router-dom"
 
 type Lesson = {
     id: string,
@@ -115,9 +112,25 @@ const Lessons = () => {
                                     <img src={paper} alt="" />
                                     <p>{elem.name}</p>
                                 </div>
-                                <a style={{
-                                    cursor: 'pointer'
-                                }} href={elem.urlFile}><img src={download} alt="" /></a>
+                                <div style={{
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    gap: '12px'
+                                }}>
+                                    <a style={{
+                                        cursor: 'pointer'
+                                    }} href={elem.urlFile}><img src={download} alt="" /></a>
+                                    <img onClick={() => {
+                                        $api.delete('/lectern/' + elem.id)
+                                            .then(e => {
+                                                if (e.status == 204) {
+                                                    getlessons()
+                                                }
+                                            })
+                                    }} style={{
+                                        cursor: 'pointer'
+                                    }} src={'/exit.svg'} alt="" />
+                                </div>
                             </div>
                         </AddButton> : <div style={{
                             display: 'flex',
@@ -134,7 +147,25 @@ const Lessons = () => {
                                 <img src={paper} alt="" />
                                 <p>{elem.name}</p>
                             </div>
-                            <a href={elem.urlFile}><img src={download} alt="" /></a>
+                            <div style={{
+                                display: 'flex',
+                                alignItems: 'center',
+                                gap: '12px'
+                            }}>
+                                <a style={{
+                                    cursor: 'pointer'
+                                }} href={elem.urlFile}><img src={download} alt="" /></a>
+                                <img onClick={() => {
+                                    $api.delete('/lectern/' + elem.id)
+                                        .then(e => {
+                                            if (e.status == 204) {
+                                                getlessons()
+                                            }
+                                        })
+                                }} style={{
+                                    cursor: 'pointer'
+                                }} src={'/exit.svg'} alt="" />
+                            </div>
                         </div>
                     })
                 }
@@ -157,20 +188,54 @@ const Lessons = () => {
                                 boxShadow: '0px 0px 4px 0px rgba(0, 0, 0, 0.5)',
                                 display: 'flex',
                                 alignItems: 'center',
+                                justifyContent: 'space-between',
                                 gap: '10px'
                             }}>
-                                <img src={paper} width={40} height={40} alt="" />
-                                <p>{elem.name}</p>
+                                <div style={{
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    gap: '10px'
+                                }}>
+                                    <img src={paper} width={40} height={40} alt="" />
+                                    <p>{elem.name}</p>
+                                </div>
+                                <img onClick={() => {
+                                    $api.delete('/test?id=' + elem.id)
+                                        .then(e => {
+                                            if (e.status == 204) {
+                                                getTests()
+                                            }
+                                        })
+                                }} style={{
+                                    cursor: 'pointer'
+                                }} src={'/exit.svg'} alt="" />
                             </div>
                         </AddButton> : <div style={{
                             padding: '14px',
                             boxShadow: '0px 0px 4px 0px rgba(0, 0, 0, 0.5)',
                             display: 'flex',
                             alignItems: 'center',
+                            justifyContent: 'space-between',
                             gap: '10px'
                         }}>
-                            <img src={paper} width={40} height={40} alt="" />
-                            <p>{elem.name}</p>
+                            <div style={{
+                                display: 'flex',
+                                alignItems: 'center',
+                                gap: '10px'
+                            }}>
+                                <img src={paper} width={40} height={40} alt="" />
+                                <p>{elem.name}</p>
+                            </div>
+                            <img onClick={() => {
+                                $api.delete('/test?id=' + elem.id)
+                                    .then(e => {
+                                        if (e.status == 204) {
+                                            getTests()
+                                        }
+                                    })
+                            }} style={{
+                                cursor: 'pointer'
+                            }} src={'/exit.svg'} alt="" />
                         </div>
                     })
                 }

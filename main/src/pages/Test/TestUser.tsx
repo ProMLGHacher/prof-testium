@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Test } from './TestTypes';
 import PageTitle from '../../shared/ui/PageTitle/PageTitle';
 import { useNavigate } from 'react-router-dom';

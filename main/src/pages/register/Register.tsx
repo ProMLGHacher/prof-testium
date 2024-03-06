@@ -5,8 +5,8 @@ import EditText from '../../shared/ui/EditText/EditText'
 import email from '../../assets/mail.svg'
 import lock from '../../assets/lock.svg'
 import { Link } from 'react-router-dom'
-import { useAppDispatch, useAppSelector } from '../../store/hooks'
-import { regThunk, selectRole, selectToken } from '../../slices/authSlice'
+import { useAppDispatch } from '../../store/hooks'
+import { regThunk } from '../../slices/authSlice'
 import { useState } from 'react'
 
 function Register() {

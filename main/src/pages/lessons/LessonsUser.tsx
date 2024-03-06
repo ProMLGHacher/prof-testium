@@ -1,7 +1,6 @@
 import PageTitle from "../../shared/ui/PageTitle/PageTitle"
 import paper from '../../assets/paper.svg'
 import warn from '../../assets/warn.svg'
-import suc from '../../assets/suc.svg'
 import download from '../../assets/Download.svg'
 import { useEffect, useState } from "react"
 import { $api } from "../../shared/api/api"

@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import PageTitle from '../../shared/ui/PageTitle/PageTitle'
 import { $api } from '../../shared/api/api'
-import { Link, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 export type Otdel = {
     id: string,
