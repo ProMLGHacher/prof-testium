@@ -3,6 +3,7 @@ import Header from '../../shared/ui/header/Header'
 import welcome from '../../assets/welcome.svg'
 import EditText from '../../shared/ui/EditText/EditText'
 import email from '../../assets/mail.svg'
+import pdf from '../../assets/conf.pdf'
 import lock from '../../assets/lock.svg'
 import { Link } from 'react-router-dom'
 import { useAppDispatch } from '../../store/hooks'
@@ -56,12 +57,12 @@ function Register() {
               <Link className='link' to={'/auth'} >У меня есть аккаунт</Link>
               {/* <Link className='link' to={'/'} >Я не помню пароль</Link> */}
             </div>
-            <Link to={'/conf.pdf'} style={{
+            <a href={'/conf.pdf'} download style={{
               color: 'white',
               textDecoration: 'underline',
               fontSize: '12px',
               width: '70%'
-            }}>Нажимая на кнопку регистрации вы соглашаетесь с <span>политикой конфеденциальности</span>!</Link>
+            }}>Нажимая на кнопку регистрации вы соглашаетесь с <span>политикой конфеденциальности</span>!</a>
           </div>
         </div>
         <img className='welcome-img' src={welcome} alt="" />
